@@ -10,10 +10,10 @@ import java.util.*
 @Entity(tableName = "leagues")
 @JsonClass(generateAdapter = true)
 data class League(
-    @PrimaryKey @ColumnInfo(name = "id") var id: String = UUID.randomUUID().toString(),
     @field:Json(name = "name") val name: String,
     @field:Json(name = "url") val url: String,
-    var page: Int = 0
+    var page: Int = 0,
+    @PrimaryKey @ColumnInfo(name = "id") var id: String = UUID.randomUUID().toString(),
 ) {
 
 }

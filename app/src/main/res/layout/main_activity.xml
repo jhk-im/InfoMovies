@@ -7,7 +7,7 @@
     tools:context=".screen.main.MainActivity">
 
     <TextView
-        android:id="@+id/getJson"
+        android:id="@+id/test_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
