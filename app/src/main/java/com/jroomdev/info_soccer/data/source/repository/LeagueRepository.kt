@@ -18,14 +18,14 @@ package com.jroomdev.info_soccer.data.source.repository
 import android.util.Log
 import androidx.annotation.WorkerThread
 import com.jroomdev.info_soccer.data.source.local.LeagueDao
-import com.jroomdev.info_soccer.data.source.network.NetworkDataSource
+import com.jroomdev.info_soccer.data.source.network.RetrofitClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class LeagueRepository @Inject constructor(
-    private val networkDataSource: NetworkDataSource,
+    private val retrofitClient: RetrofitClient,
     private val leagueDao: LeagueDao
 ):Repository {
 
