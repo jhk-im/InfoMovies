@@ -66,7 +66,4 @@ ext {
     roomVersion = '2.3.0-alpha03'
     fragmentVersion = '1.2.5'
     lifecycleVersion = '2.2.0'
-
-    // debugging
-    timberVersion = '4.7.1'
 }
