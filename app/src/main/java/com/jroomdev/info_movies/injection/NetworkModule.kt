@@ -9,11 +9,15 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+
+    private val BASE_URL: String
+        get() = "https://api.themoviedb.org/3/"
 
     @Provides
     @Singleton
@@ -28,7 +32,8 @@ object NetworkModule {
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
-            .baseUrl("https://api.themoviedb.org/3")
+            .baseUrl(BASE_URL)
+            .addConverterFactory(MoshiConverterFactory.create())
             .build()
     }
 

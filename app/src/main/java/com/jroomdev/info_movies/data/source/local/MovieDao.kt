@@ -22,11 +22,14 @@ import androidx.room.Query
 import com.jroomdev.info_movies.data.model.Movie
 
 @Dao
-interface MoviesDao {
+interface MovieDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun saveMoviesList(movieList: List<Movie>)
+    suspend fun saveMovies(movieInfoList: List<Movie>)
 
     @Query("SELECT * FROM movies WHERE page = :page ")
-    suspend fun getMoviesList(page: Int): List<Movie>
+    suspend fun getMovies(page: Int): List<Movie>
+
+    @Query("SELECT * FROM movies WHERE id= :id")
+    suspend fun getMovie(id: Int): Movie
 }

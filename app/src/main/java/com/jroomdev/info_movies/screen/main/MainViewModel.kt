@@ -21,10 +21,10 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.jroomdev.info_movies.base.LiveCoroutinesViewModel
 import com.jroomdev.info_movies.data.model.Movie
-import com.jroomdev.info_movies.data.source.repository.MoviesRepository
+import com.jroomdev.info_movies.data.source.repository.MainRepository
 
 class MainViewModel @ViewModelInject constructor(
-    private val moviesRepository: MoviesRepository,
+    private val mainRepository: MainRepository,
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : LiveCoroutinesViewModel() {
 
@@ -34,7 +34,7 @@ class MainViewModel @ViewModelInject constructor(
     init {
         leagues = getLeagues.switchMap {
             launchOnViewModelScope {
-                this.moviesRepository.getLeagues(
+                this.mainRepository.getLeagues(
                     page = it,
                     onSuccess = {  },
                     onError = {  },

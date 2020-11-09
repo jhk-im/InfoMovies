@@ -22,5 +22,5 @@ import com.jroomdev.info_movies.data.model.Movie
 @Database(entities = [Movie::class], version = 1, exportSchema = true)
 abstract class AppDatabase: RoomDatabase() {
 
-    abstract fun moviesDao(): MoviesDao
+    abstract fun movieDao(): MovieDao
 }
