@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         val textView = findViewById<TextView>(R.id.test_text)
         val param = mapOf( // (1) GET 요청용 변수를 mapOf()를 사용해 지정
             "page" to "1",
-            "api_key" to "e7b63af5659f57f6415baadfc9a3c6c5",
+            "api_key" to "API KEY",
             "sort_by" to "popularity.desc",
             "language" to "en"
         )
@@ -49,6 +49,5 @@ class MainActivity : AppCompatActivity() {
                 Log.e("","${e.message}")
             }
         }
-
     }
 }
