@@ -16,6 +16,5 @@
 package com.jroomdev.info_movies.data.model
 
 class MovieListResponse(
-    var page: Int,
     val results: List<Movie>
 )

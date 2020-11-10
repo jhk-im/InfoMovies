@@ -15,6 +15,10 @@
  */
 package com.jroomdev.info_movies.injection
 
+import android.app.Application
+import androidx.room.Room
+import com.jroomdev.info_movies.data.source.local.AppDatabase
+import com.jroomdev.info_movies.data.source.local.MovieDao
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -30,5 +34,23 @@ object LocalModule {
     @Singleton
     fun provideMoshi(): Moshi {
         return Moshi.Builder().build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideAppDatabase(
+        application: Application
+    ): AppDatabase {
+        return Room
+            .databaseBuilder(application, AppDatabase::class.java, "Movies.db")
+            .fallbackToDestructiveMigration()
+            .allowMainThreadQueries()
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideMovieDao(appDatabase: AppDatabase): MovieDao {
+        return appDatabase.movieDao()
     }
 }
