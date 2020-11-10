@@ -19,21 +19,22 @@ package com.jroomdev.info_movies.screen.main
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.jroomdev.info_movies.R
-import com.jroomdev.info_movies.base.DataBindingActivity
 import com.jroomdev.info_movies.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : DataBindingActivity() {
+class MainActivity : AppCompatActivity() {
 
     @VisibleForTesting val mainViewModel: MainViewModel by viewModels()
-    private val binding: ActivityMainBinding by binding(R.layout.activity_main)
-
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // setContentView(R.layout.activity_main)
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         binding.apply {
             lifecycleOwner = this@MainActivity
