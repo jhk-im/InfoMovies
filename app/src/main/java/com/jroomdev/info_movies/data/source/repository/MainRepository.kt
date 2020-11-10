@@ -15,31 +15,29 @@
  */
 package com.jroomdev.info_movies.data.source.repository
 
-import android.util.Log
 import androidx.annotation.WorkerThread
-import com.jroomdev.info_movies.data.source.local.MoviesDao
+import com.jroomdev.info_movies.data.source.local.MovieDao
 import com.jroomdev.info_movies.data.source.network.RetrofitClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-class MoviesRepository @Inject constructor(
+class MainRepository @Inject constructor(
     private val retrofitClient: RetrofitClient,
-    private val moviesDao: MoviesDao
+    private val movieDao: MovieDao
 ):Repository {
 
-    @WorkerThread
-    suspend fun getLeagues(
-        page: Int,
-        onSuccess: () -> Unit,
-        onError: (String) -> Unit
-    ) = flow {
-        var leagues = moviesDao.getLeagueList(page)
-        if (leagues.isEmpty()) {
-            Log.e("Network","implementing...")
-        } else {
-            emit(leagues)
-        }
-    }.flowOn(Dispatchers.IO)
+//    @WorkerThread
+//    suspend fun getLeagues(
+//        page: Int,
+//        onSuccess: () -> Unit,
+//        onError: (String) -> Unit
+//    ) = flow {
+//        var movies = movieDao.getMovies(page)
+//        if (movies.isEmpty()) {
+//        } else {
+//            emit(movies)
+//        }
+//    }.flowOn(Dispatchers.IO)
 }

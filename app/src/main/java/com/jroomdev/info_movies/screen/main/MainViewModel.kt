@@ -21,26 +21,26 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.jroomdev.info_movies.base.LiveCoroutinesViewModel
 import com.jroomdev.info_movies.data.model.Movie
-import com.jroomdev.info_movies.data.source.repository.MoviesRepository
+import com.jroomdev.info_movies.data.source.repository.MainRepository
 
 class MainViewModel @ViewModelInject constructor(
-    private val moviesRepository: MoviesRepository,
+    private val mainRepository: MainRepository,
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : LiveCoroutinesViewModel() {
 
     private var getLeagues: MutableLiveData<Int> = MutableLiveData(0)
-    val leagues: LiveData<List<Movie>>
+    //val leagues: LiveData<List<Movie>>
 
     init {
-        leagues = getLeagues.switchMap {
-            launchOnViewModelScope {
-                this.moviesRepository.getLeagues(
-                    page = it,
-                    onSuccess = {  },
-                    onError = {  },
-                ).asLiveData()
-            }
-        }
+//        leagues = getLeagues.switchMap {
+//            launchOnViewModelScope {
+//                this.mainRepository.getLeagues(
+//                    page = it,
+//                    onSuccess = {  },
+//                    onError = {  },
+//                ).asLiveData()
+//            }
+//        }
     }
 
     @MainThread

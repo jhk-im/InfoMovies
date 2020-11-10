@@ -1,20 +1,27 @@
 package com.jroomdev.info_movies.data.model
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import java.util.*
+import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "movies")
-@JsonClass(generateAdapter = true)
+@Parcelize
 data class Movie(
-    @field:Json(name = "id") @PrimaryKey val id: String,
-    @field:Json(name = "title") val title: String,
-    @field:Json(name = "backdrop_path") val backdrop_path: String,
-    @field:Json(name = "poster_path") val poster_path: String,
-    var page: Int = 0
-) {
+    @PrimaryKey val id: Int,
+    @ColumnInfo(name = "title") val title: String,
+    @ColumnInfo(name = "poster_path") val poster_path: String,
+    @ColumnInfo(name = "popularity")val popularity: Float,
+    @ColumnInfo(name = "vote_count") val vote_count: Int,
+    @ColumnInfo(name = "vote_average") val vote_average: Float,
+    @ColumnInfo(name = "page") val page: Int?
+) : Parcelable {
 
+    fun getVoteCountString(): String = "$vote_count"
+    fun getVoteAverageString(): String ="$vote_average"
+    fun getPopularityString(): String = "$popularity"
+    fun getImageUrl(): String = "https://image.tmdb.org/t/p/w200$poster_path"
 }
