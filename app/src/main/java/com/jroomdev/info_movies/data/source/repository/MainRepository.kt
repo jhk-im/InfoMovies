@@ -28,16 +28,16 @@ class MainRepository @Inject constructor(
     private val movieDao: MovieDao
 ):Repository {
 
-    @WorkerThread
-    suspend fun getLeagues(
-        page: Int,
-        onSuccess: () -> Unit,
-        onError: (String) -> Unit
-    ) = flow {
-        var movies = movieDao.getMovies(page)
-        if (movies.isEmpty()) {
-        } else {
-            emit(movies)
-        }
-    }.flowOn(Dispatchers.IO)
+//    @WorkerThread
+//    suspend fun getLeagues(
+//        page: Int,
+//        onSuccess: () -> Unit,
+//        onError: (String) -> Unit
+//    ) = flow {
+//        var movies = movieDao.getMovies(page)
+//        if (movies.isEmpty()) {
+//        } else {
+//            emit(movies)
+//        }
+//    }.flowOn(Dispatchers.IO)
 }
