@@ -26,13 +26,13 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = "movies")
 @Parcelize
 data class Movie(
-    @PrimaryKey val id: Int,
+    @PrimaryKey @ColumnInfo(name = "id") val id: Int,
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "poster_path") val poster_path: String,
     @ColumnInfo(name = "popularity")val popularity: Float,
     @ColumnInfo(name = "vote_count") val vote_count: Int,
     @ColumnInfo(name = "vote_average") val vote_average: Float,
-    @ColumnInfo(name = "page") val page: Int?
+    @ColumnInfo(name = "page") var page: Int?
 ) : Parcelable {
 
     fun getVoteCountString(): String = "$vote_count"

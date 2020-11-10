@@ -13,28 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.jroomdev.info_movies.screen.main
 
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
-import androidx.databinding.DataBindingUtil
 import com.jroomdev.info_movies.R
 import com.jroomdev.info_movies.base.DataBindingActivity
-import com.jroomdev.info_movies.databinding.MainActivityBinding
+import com.jroomdev.info_movies.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : DataBindingActivity() {
 
-    @VisibleForTesting
-    val mainViewModel: MainViewModel by viewModels()
-    //private val binding: MainActivityBinding by binding(R.layout.main_activity)
+    @VisibleForTesting val mainViewModel: MainViewModel by viewModels()
+    private val binding: ActivityMainBinding by binding(R.layout.activity_main)
 
-    private lateinit var binding: MainActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = DataBindingUtil.setContentView(this,R.layout.main_activity)
+        // setContentView(R.layout.activity_main)
 
         binding.apply {
             lifecycleOwner = this@MainActivity

@@ -15,12 +15,21 @@
  */
 package com.jroomdev.info_movies.data.source.network
 
+import com.jroomdev.info_movies.data.model.MovieListResponse
 import javax.inject.Inject
 
 class RetrofitClient @Inject constructor(
     private val retrofitService: RetrofitService
 ) {
 
-
+    suspend fun fetchMovies(page: Int): MovieListResponse {
+        val param = mapOf( // (1) GET 요청용 변수를 mapOf()를 사용해 지정
+            "page" to page.toString(),
+            "api_key" to "e7b63af5659f57f6415baadfc9a3c6c5",
+            "sort_by" to "popularity.desc",
+            "language" to "en"
+        )
+        return retrofitService.getMovies(param)
+    }
 
 }

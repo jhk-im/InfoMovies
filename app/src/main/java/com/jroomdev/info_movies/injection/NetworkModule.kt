@@ -31,9 +31,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private val BASE_URL: String
-        get() = "https://api.themoviedb.org/3/"
-
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {

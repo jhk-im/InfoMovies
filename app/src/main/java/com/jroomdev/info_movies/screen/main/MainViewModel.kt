@@ -15,18 +15,38 @@
  */
 package com.jroomdev.info_movies.screen.main
 
+import android.util.Log
 import androidx.annotation.MainThread
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
-import com.jroomdev.info_movies.base.LiveCoroutinesViewModel
-import com.jroomdev.info_movies.data.model.Movie
 import com.jroomdev.info_movies.data.source.repository.MainRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class MainViewModel @ViewModelInject constructor(
     private val mainRepository: MainRepository,
     @Assisted private val savedStateHandle: SavedStateHandle
-) : LiveCoroutinesViewModel() {
+) : ViewModel() {
 
+    init {
 
+        viewModelScope.launch(Dispatchers.IO) { // (1) 코루틴의 launch 빌더 사용
+            try {
+                mainRepository.getMovies(1).collect {
+                    for (movie in it) {
+                        Log.e("title","${movie.title}")
+                    }
+                }
+            } catch (e: Throwable) { // (3)
+                Log.e("","${e.message}")
+            }
+        }
+    }
+
+    @MainThread
+    fun getMovies(page: Int) {
+
+    }
 }
