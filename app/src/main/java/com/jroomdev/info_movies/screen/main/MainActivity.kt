@@ -1,53 +1,44 @@
+/*
+ * Copyright (C) 2020 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.jroomdev.info_movies.screen.main
 
 import android.os.Bundle
-import android.util.Log
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import androidx.activity.viewModels
+import androidx.annotation.VisibleForTesting
+import androidx.databinding.DataBindingUtil
 import com.jroomdev.info_movies.R
-import com.jroomdev.info_movies.data.source.network.HttpRequestInterceptor
-import com.jroomdev.info_movies.data.source.network.RetrofitClient
-import com.jroomdev.info_movies.data.source.network.RetrofitService
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.await
-import retrofit2.converter.moshi.MoshiConverterFactory
+import com.jroomdev.info_movies.base.DataBindingActivity
+import com.jroomdev.info_movies.databinding.MainActivityBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DataBindingActivity() {
+
+    @VisibleForTesting
+    val mainViewModel: MainViewModel by viewModels()
+    //private val binding: MainActivityBinding by binding(R.layout.main_activity)
+
+    private lateinit var binding: MainActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
 
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org/3/")
-            .addConverterFactory(MoshiConverterFactory.create())
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
-            .build()
+        binding = DataBindingUtil.setContentView(this,R.layout.main_activity)
 
-        val retrofitService = retrofit.create(RetrofitService::class.java)
-
-        val textView = findViewById<TextView>(R.id.test_text)
-        val param = mapOf( // (1) GET 요청용 변수를 mapOf()를 사용해 지정
-            "page" to "1",
-            "api_key" to "API KEY",
-            "sort_by" to "popularity.desc",
-            "language" to "en"
-        )
-
-        GlobalScope.launch(Dispatchers.Main) { // (1) 코루틴의 launch 빌더 사용
-            try {
-                for (movie in retrofitService.getMovies(param).results) {
-                    Log.e("movie","${movie.title}")
-                }
-
-            } catch (e: Throwable) { // (3)
-                Log.e("","${e.message}")
-            }
+        binding.apply {
+            lifecycleOwner = this@MainActivity
+            viewModel = mainViewModel
         }
     }
 }
