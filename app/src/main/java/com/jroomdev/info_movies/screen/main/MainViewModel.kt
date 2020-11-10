@@ -47,6 +47,5 @@ class MainViewModel @ViewModelInject constructor(
 
     @MainThread
     fun getMovies(page: Int) {
-
     }
 }
