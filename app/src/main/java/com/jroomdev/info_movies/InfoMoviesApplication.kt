@@ -13,19 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jroomdev.info_movies.base
+package com.jroomdev.info_movies
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.Dispatchers
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
-abstract class LiveCoroutinesViewModel : ViewModel() {
-
-  inline fun <T> launchOnViewModelScope(crossinline block: suspend () -> LiveData<T>): LiveData<T> {
-    return liveData(viewModelScope.coroutineContext + Dispatchers.IO) {
-      emitSource(block())
-    }
-  }
-}
+@HiltAndroidApp
+class InfoMoviesApplication : Application()

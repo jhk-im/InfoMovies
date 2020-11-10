@@ -28,24 +28,5 @@ class MainViewModel @ViewModelInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : LiveCoroutinesViewModel() {
 
-    private var getLeagues: MutableLiveData<Int> = MutableLiveData(0)
-    //val leagues: LiveData<List<Movie>>
-
-    init {
-//        leagues = getLeagues.switchMap {
-//            launchOnViewModelScope {
-//                this.mainRepository.getLeagues(
-//                    page = it,
-//                    onSuccess = {  },
-//                    onError = {  },
-//                ).asLiveData()
-//            }
-//        }
-    }
-
-    @MainThread
-    fun getLeagues(page: Int) {
-        getLeagues.value = page
-    }
 
 }
