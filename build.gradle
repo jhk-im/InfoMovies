@@ -50,6 +50,7 @@ ext {
     materialVersion = '1.2.0-alpha06'
     constraintVersion = '2.0.2'
     recyclerVersion = '1.1.0'
+    swiperRefreshversion = '1.1.0'
     appCompatVersion = '1.2.0'
 
     // network
