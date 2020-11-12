@@ -22,8 +22,8 @@
     <data>
 
         <variable
-            name="viewModel"
-            type="com.jroomdev.info_movies.screen.main.MainViewModel" />
+            name="movie"
+            type="com.jroomdev.info_movies.data.model.Movie" />
     </data>
 
     <LinearLayout
@@ -37,6 +37,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:clickable="true"
+            android:focusable="true"
             app:cardCornerRadius="14dp">
 
             <LinearLayout
@@ -53,7 +55,6 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="4dp"
-                    android:text="1"
                     android:textSize="18sp"
                     android:textColor="?android:attr/textColor" />
 
@@ -66,7 +67,7 @@
                     android:padding="4dp"
                     android:maxLines="1"
                     android:ellipsize="end"
-                    android:text="Hard Kill"
+                    android:text="@{movie.title}"
                     android:textSize="18sp"
                     android:textColor="?android:attr/textColor" />
             </LinearLayout>
@@ -77,6 +78,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:clickable="true"
+            android:focusable="true"
             app:cardCornerRadius="14dp"
             app:cardUseCompatPadding="true">
 
@@ -84,7 +87,6 @@
                 android:id="@+id/movie_image_card"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/test"
                 android:scaleType="centerCrop"
                 android:foreground="@color/image_translate"
                 tools:ignore="UnusedAttribute" />
@@ -114,7 +116,6 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:padding="2dp"
-                        android:text="6.7"
                         android:textColor="@color/white" />
                 </LinearLayout>
 
@@ -128,7 +129,7 @@
                     android:paddingEnd="4dp"
                     android:maxLines="1"
                     android:ellipsize="end"
-                    android:text="Hard Kill"
+                    android:text="@{movie.title}"
                     android:textColor="@color/white"
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="@id/overview_card"
@@ -145,7 +146,7 @@
                     android:paddingBottom="4dp"
                     android:maxLines="2"
                     android:ellipsize="end"
-                    android:text="The work of billionaire tech CEO Donovan Chalmers is so valuable that he hires mercenaries to protect it, and a terrorist group kidnaps his daughter just to get it."
+                    android:text="@{movie.overview}"
                     android:textColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

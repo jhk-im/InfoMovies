@@ -32,6 +32,7 @@ data class Movie(
     @ColumnInfo(name = "popularity")val popularity: Float,
     @ColumnInfo(name = "vote_count") val vote_count: Int,
     @ColumnInfo(name = "vote_average") val vote_average: Float,
+    @ColumnInfo(name = "overview") val overview: String,
     @ColumnInfo(name = "page") var page: Int?
 ) : Parcelable {
 

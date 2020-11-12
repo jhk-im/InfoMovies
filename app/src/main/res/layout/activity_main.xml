@@ -22,6 +22,10 @@
     <data>
 
         <variable
+            name="adapter"
+            type="com.jroomdev.info_movies.screen.adapter.MovieAdapter" />
+
+        <variable
             name="viewModel"
             type="com.jroomdev.info_movies.screen.main.MainViewModel" />
     </data>
@@ -68,7 +72,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="4dp"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                    app:adapter="@{adapter}"
+                    app:movies="@{viewModel.movies}"
+                    app:paginationMovies="@{viewModel}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_main_movie"/>
             </com.jroomdev.info_movies.util.ScrollChildSwipeRefreshLayout>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,6 +22,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.jroomdev.info_movies.R
 import com.jroomdev.info_movies.databinding.ActivityMainBinding
+import com.jroomdev.info_movies.screen.adapter.MovieAdapter
+import com.jroomdev.info_movies.screen.adapter.MovieListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             lifecycleOwner = this@MainActivity
             viewModel = mainViewModel
+            adapter = MovieAdapter()
         }
     }
 }
