@@ -41,7 +41,7 @@ class MainRepository @Inject constructor(
                 movie.page = page
                 newMovies.add(movie)
             }
-            movieDao.saveMovies(newMovies).apply {  }
+            movieDao.saveMovies(newMovies)
             emit(newMovies)
         } else {
             emit(movies)
