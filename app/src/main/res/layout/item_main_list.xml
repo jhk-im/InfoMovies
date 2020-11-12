@@ -22,6 +22,10 @@
     <data>
 
         <variable
+            name="adapter"
+            type="com.jroomdev.info_movies.screen.adapter.MovieAdapter" />
+
+        <variable
             name="viewModel"
             type="com.jroomdev.info_movies.screen.main.MainViewModel" />
     </data>
@@ -37,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:padding="4dp"
-            android:text="popularity"
+            android:text="Popularity"
             android:textColor="?android:attr/textColor"
             android:textSize="18sp" />
 
@@ -46,7 +50,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:padding="4dp" />
+            android:padding="4dp"
+            app:adapter="@{adapter}"
+            tools:listitem="@layout/item_main_movie"/>
 
         <Button
             android:id="@+id/list_close_btn"

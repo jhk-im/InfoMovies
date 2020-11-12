@@ -15,4 +15,7 @@
  */
 package com.jroomdev.info_movies.data.source.repository
 
+import androidx.lifecycle.LiveData
+import com.jroomdev.info_movies.data.model.Movie
+
 interface Repository
