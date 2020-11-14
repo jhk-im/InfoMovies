@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright (C) 2020 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,8 +13,7 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -57,27 +55,21 @@
             android:id="@+id/coordinator_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf= "parent"
-            app:layout_constraintEnd_toEndOf= "parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBar">
 
-            <com.jroomdev.info_movies.util.ScrollChildSwipeRefreshLayout
-                android:id="@+id/refresh_layout"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/movie_list_rv"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/movie_list_rv"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="4dp"
-                    app:adapter="@{adapter}"
-                    app:movies="@{viewModel.movies}"
-                    app:paginationMovies="@{viewModel}"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_main_movie"/>
-            </com.jroomdev.info_movies.util.ScrollChildSwipeRefreshLayout>
+                android:layout_height="match_parent"
+                android:padding="4dp"
+                app:adapter="@{adapter}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:movies="@{viewModel.movies}"
+                app:paginationMovies="@{viewModel}"
+                tools:listitem="@layout/item_main_movie" />
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

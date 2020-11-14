@@ -49,10 +49,10 @@
 
                 <TextView
                     android:id="@+id/movie_rank"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
-                    android:layout_weight="1"
+                    android:layout_weight="9"
                     android:gravity="center"
                     android:padding="4dp"
                     android:textSize="18sp"
@@ -60,10 +60,10 @@
 
                 <TextView
                     android:id="@+id/movie_title"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
-                    android:layout_weight="10"
+                    android:layout_weight="1"
                     android:padding="4dp"
                     android:maxLines="1"
                     android:ellipsize="end"
@@ -89,7 +89,8 @@
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
                 android:foreground="@color/image_translate"
-                tools:ignore="UnusedAttribute" />
+                tools:ignore="UnusedAttribute"
+                app:loadImage="@{movie.imageUrl}"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -114,6 +115,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:text="@{movie.voteAverageString}"
                         android:gravity="center"
                         android:padding="2dp"
                         android:textColor="@color/white" />

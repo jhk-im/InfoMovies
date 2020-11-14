@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.jroomdev.info_movies.R
 import com.jroomdev.info_movies.data.model.Movie
 import com.jroomdev.info_movies.databinding.ItemMainMovieBinding
@@ -30,11 +29,12 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
+        val rank= position + 1
         holder.binding.apply {
             movie = items[position]
+            movieRank.text = rank.toString()
             executePendingBindings()
         }
-        holder.bindViewHolder(items[position], position)
     }
 
     override fun getItemCount() = items.size
@@ -45,19 +45,5 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
     }
 
     class MovieViewHolder(val binding: ItemMainMovieBinding) :
-        RecyclerView.ViewHolder(binding.root){
-
-        fun bindViewHolder(movie: Movie, position: Int) {
-            with(binding) {
-                val rank = position + 1
-                movieRank.text = rank.toString()
-                voteAverageCard.text = movie.vote_average.toString()
-                Glide.with(binding.root)
-                    .load(movie.getImageUrl())
-                    .error(R.drawable.test)
-                    .into(movieImageCard)
-                executePendingBindings()
-            }
-        }
-    }
+        RecyclerView.ViewHolder(binding.root)
 }

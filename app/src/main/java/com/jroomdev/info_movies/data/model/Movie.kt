@@ -36,6 +36,7 @@ data class Movie(
     @ColumnInfo(name = "page") var page: Int?
 ) : Parcelable {
 
+
     fun getVoteCountString(): String = "$vote_count"
     fun getVoteAverageString(): String ="$vote_average"
     fun getPopularityString(): String = "$popularity"
