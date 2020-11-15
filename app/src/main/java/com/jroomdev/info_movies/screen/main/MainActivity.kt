@@ -23,24 +23,24 @@ import androidx.databinding.DataBindingUtil
 import com.jroomdev.info_movies.R
 import com.jroomdev.info_movies.databinding.ActivityMainBinding
 import com.jroomdev.info_movies.screen.adapter.MovieAdapter
-import com.jroomdev.info_movies.screen.adapter.MovieListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    @VisibleForTesting val mainViewModel: MainViewModel by viewModels()
-    private lateinit var binding: ActivityMainBinding
+  @VisibleForTesting
+  val mainViewModel: MainViewModel by viewModels()
+  private lateinit var binding: ActivityMainBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+    binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        binding.apply {
-            lifecycleOwner = this@MainActivity
-            viewModel = mainViewModel
-            adapter = MovieAdapter()
-        }
+    binding.apply {
+      lifecycleOwner = this@MainActivity
+      viewModel = mainViewModel
+      adapter = MovieAdapter()
     }
+  }
 }

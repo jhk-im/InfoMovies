@@ -21,6 +21,6 @@ import retrofit2.http.QueryMap
 
 interface RetrofitService {
 
-    @GET("discover/movie")
-    suspend fun getMovies(@QueryMap par: Map<String, String>): MovieListResponse
+  @GET("discover/movie")
+  suspend fun getMovies(@QueryMap par: Map<String, String>): MovieListResponse
 }

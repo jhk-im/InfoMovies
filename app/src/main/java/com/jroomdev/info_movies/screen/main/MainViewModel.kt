@@ -30,19 +30,19 @@ class MainViewModel @ViewModelInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : LiveCoroutinesViewModel() {
 
-    private var moviesFetchingLiveData: MutableLiveData<Int> = MutableLiveData(0)
-    val movies: LiveData<List<Movie>>
+  private var moviesFetchingLiveData: MutableLiveData<Int> = MutableLiveData(0)
+  val movies: LiveData<List<Movie>>
 
-    init {
-        movies = moviesFetchingLiveData.switchMap {
-            launchOnViewModelScope {
-                this.mainRepository.getMovies(1).asLiveData()
-            }
-        }
+  init {
+    movies = moviesFetchingLiveData.switchMap {
+      launchOnViewModelScope {
+        this.mainRepository.getMovies(1).asLiveData()
+      }
     }
+  }
 
-    @MainThread
-    fun fetchMovieList(page: Int) {
-        moviesFetchingLiveData.value = page
-    }
+  @MainThread
+  fun fetchMovieList(page: Int) {
+    moviesFetchingLiveData.value = page
+  }
 }

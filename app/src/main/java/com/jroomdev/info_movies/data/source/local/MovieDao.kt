@@ -25,15 +25,15 @@ import com.jroomdev.info_movies.data.model.Movie
 @Dao
 interface MovieDao {
 
-    @Query("SELECT * FROM movies")
-    fun observeMovies(): LiveData<List<Movie>>
+  @Query("SELECT * FROM movies")
+  fun observeMovies(): LiveData<List<Movie>>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun saveMovies(movieInfoList: List<Movie>)
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
+  suspend fun saveMovies(movieInfoList: List<Movie>)
 
-    @Query("SELECT * FROM movies WHERE page = :page ")
-    suspend fun getMovies(page: Int): List<Movie>
+  @Query("SELECT * FROM movies WHERE page = :page ")
+  suspend fun getMovies(page: Int): List<Movie>
 
-    @Query("SELECT * FROM movies WHERE id= :id")
-    suspend fun getMovie(id: Int): Movie
+  @Query("SELECT * FROM movies WHERE id= :id")
+  suspend fun getMovie(id: Int): Movie
 }

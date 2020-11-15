@@ -27,25 +27,25 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class MainRepository @Inject constructor(
-    private val retrofitClient: RetrofitClient,
-    private val movieDao: MovieDao
-):Repository {
+  private val retrofitClient: RetrofitClient,
+  private val movieDao: MovieDao
+) : Repository {
 
-    @WorkerThread
-    suspend fun getMovies(
-        page: Int
-    ) = flow {
-        val movies = movieDao.getMovies(page)
-        if (movies.isEmpty()) {
-            val newMovies = ArrayList<Movie>()
-            for (movie in retrofitClient.fetchMovies(page).results) {
-                movie.page = page
-                newMovies.add(movie)
-            }
-            movieDao.saveMovies(newMovies)
-            emit(newMovies)
-        } else {
-            emit(movies)
-        }
-    }.flowOn(Dispatchers.IO)
+  @WorkerThread
+  suspend fun getMovies(
+    page: Int
+  ) = flow {
+    val movies = movieDao.getMovies(page)
+    if (movies.isEmpty()) {
+      val newMovies = ArrayList<Movie>()
+      for (movie in retrofitClient.fetchMovies(page).results) {
+        movie.page = page
+        newMovies.add(movie)
+      }
+      movieDao.saveMovies(newMovies)
+      emit(newMovies)
+    } else {
+      emit(movies)
+    }
+  }.flowOn(Dispatchers.IO)
 }
