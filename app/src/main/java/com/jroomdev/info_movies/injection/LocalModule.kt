@@ -30,27 +30,27 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object LocalModule {
 
-    @Provides
-    @Singleton
-    fun provideMoshi(): Moshi {
-        return Moshi.Builder().build()
-    }
+  @Provides
+  @Singleton
+  fun provideMoshi(): Moshi {
+    return Moshi.Builder().build()
+  }
 
-    @Provides
-    @Singleton
-    fun provideAppDatabase(
-      application: Application
-    ): AppDatabase {
-        return Room
-            .databaseBuilder(application, AppDatabase::class.java, "Movies.db")
-            .fallbackToDestructiveMigration()
-            .allowMainThreadQueries()
-            .build()
-    }
+  @Provides
+  @Singleton
+  fun provideAppDatabase(
+    application: Application
+  ): AppDatabase {
+    return Room
+      .databaseBuilder(application, AppDatabase::class.java, "Movies.db")
+      .fallbackToDestructiveMigration()
+      .allowMainThreadQueries()
+      .build()
+  }
 
-    @Provides
-    @Singleton
-    fun provideMovieDao(appDatabase: AppDatabase): MovieDao {
-        return appDatabase.movieDao()
-    }
+  @Provides
+  @Singleton
+  fun provideMovieDao(appDatabase: AppDatabase): MovieDao {
+    return appDatabase.movieDao()
+  }
 }

@@ -14,15 +14,16 @@
   limitations under the License.
 -->
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/light_purple</item>
-        <item name="colorPrimaryDark">@color/light_purple</item>
-        <item name="colorAccent">@color/light_purple</item>
-        <item name="colorOnBackground">@color/light_background</item>
-        <item name="android:textColor">@color/black</item>
-        <!-- Customize your theme here. -->
-    </style>
+
+  <!-- Base application theme. -->
+  <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <!-- Primary brand color. -->
+    <item name="colorPrimary">@color/light_purple</item>
+    <item name="colorPrimaryDark">@color/light_purple</item>
+    <item name="colorAccent">@color/light_purple</item>
+    <item name="colorOnBackground">@color/light_background</item>
+    <item name="android:textColor">@color/black</item>
+    <!-- Customize your theme here. -->
+  </style>
 
 </resources>

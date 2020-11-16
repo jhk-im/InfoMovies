@@ -14,5 +14,5 @@
   limitations under the License.
 -->
 <resources>
-    <string name="app_name">info-movies</string>
+  <string name="app_name">info-movies</string>
 </resources>
