@@ -18,6 +18,7 @@ package com.jroomdev.info_movies.screen.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.jroomdev.info_movies.R
 import com.jroomdev.info_movies.data.model.Movie
@@ -25,40 +26,68 @@ import com.jroomdev.info_movies.databinding.ItemMainMovieBinding
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
-  private val items: MutableList<Movie> = mutableListOf()
-
-  override fun onCreateViewHolder(
-    parent: ViewGroup,
-    viewType: Int
-  ): MovieViewHolder {
-    val inflater = LayoutInflater.from(parent.context)
-    val binding = DataBindingUtil.inflate<ItemMainMovieBinding>(
-      inflater,
-      R.layout.item_main_movie,
-      parent,
-      false
-    )
-    return MovieViewHolder(binding).apply {
-
+    private val items: MutableList<Movie> = mutableListOf()
+    private var _clickedItem: MutableLiveData<Int> = MutableLiveData(0)
+    fun clickedItemFilter(id: Int): Boolean {
+        return _clickedItem.value == id
     }
-  }
 
-  override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-    val rank = position + 1
-    holder.binding.apply {
-      movie = items[position]
-      movieRank.text = rank.toString()
-      executePendingBindings()
+    fun refreshClickedItem(id: Int) {
+        _clickedItem.value = id
+        notifyDataSetChanged()
     }
-  }
 
-  override fun getItemCount() = items.size
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): MovieViewHolder {
 
-  fun addMovieList(movies: List<Movie>) {
-    items.addAll(movies)
-    notifyDataSetChanged()
-  }
+        val inflater = LayoutInflater.from(parent.context)
 
-  class MovieViewHolder(val binding: ItemMainMovieBinding) :
-    RecyclerView.ViewHolder(binding.root)
+        val binding = DataBindingUtil.inflate<ItemMainMovieBinding>(
+            inflater,
+            R.layout.item_main_movie,
+            parent,
+            false
+        )
+
+        return MovieViewHolder(binding).apply {
+        }
+    }
+
+    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
+
+        val rank = position + 1
+
+        holder.binding.apply {
+            movie = items[position]
+            adapter = this@MovieAdapter
+            movieRank.text = rank.toString()
+            movieDetailRank.text = rank.toString()
+            executePendingBindings()
+        }
+
+        holder.bindViewHolder()
+    }
+
+    override fun getItemCount() = items.size
+
+    fun addMovieList(movies: List<Movie>) {
+        items.addAll(movies)
+        notifyDataSetChanged()
+    }
+
+    class MovieViewHolder(val binding: ItemMainMovieBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bindViewHolder() {
+            with(binding) {
+
+                movieRankCard.setOnClickListener {
+                    adapter?.refreshClickedItem(movie?.id!!)
+                }
+                executePendingBindings()
+            }
+        }
+    }
 }

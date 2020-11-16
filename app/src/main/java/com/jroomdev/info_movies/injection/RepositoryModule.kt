@@ -28,13 +28,13 @@ import dagger.hilt.android.scopes.ActivityRetainedScoped
 @InstallIn(ActivityRetainedComponent::class)
 object RepositoryModule {
 
-  @Provides
-  @ActivityRetainedScoped
-  fun provideMainRepository(
-      retrofitClient: RetrofitClient,
-      movieDao: MovieDao
-  ): MainRepository {
-    return MainRepository(retrofitClient, movieDao)
-  }
+    @Provides
+    @ActivityRetainedScoped
+    fun provideMainRepository(
+        retrofitClient: RetrofitClient,
+        movieDao: MovieDao
+    ): MainRepository {
+        return MainRepository(retrofitClient, movieDao)
+    }
 
 }

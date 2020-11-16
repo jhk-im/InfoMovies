@@ -23,17 +23,17 @@ import com.jroomdev.info_movies.screen.main.MainViewModel
 
 @BindingAdapter("adapter")
 fun bindAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
-  view.adapter = adapter
+    view.adapter = adapter
 }
 
 @BindingAdapter("paginationMovies")
 fun paginationPokemonList(view: RecyclerView, viewModel: MainViewModel?) {
-  viewModel?.fetchMovieList(1)
+    viewModel?.fetchMovieList(1)
 }
 
 @BindingAdapter("movies")
 fun setMovies(view: RecyclerView, movies: List<Movie>?) {
-  movies?.let {
-    (view.adapter as MovieAdapter).addMovieList(movies)
-  }
+    movies?.let {
+        (view.adapter as MovieAdapter).addMovieList(movies)
+    }
 }

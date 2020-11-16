@@ -31,33 +31,33 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-  @Provides
-  @Singleton
-  fun provideOkHttpClient(): OkHttpClient {
-    return OkHttpClient.Builder()
-      .addInterceptor(HttpRequestInterceptor())
-      .build()
-  }
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(HttpRequestInterceptor())
+            .build()
+    }
 
-  @Provides
-  @Singleton
-  fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
-    return Retrofit.Builder()
-      .client(okHttpClient)
-      .baseUrl("https://api.themoviedb.org/3/")
-      .addConverterFactory(MoshiConverterFactory.create())
-      .build()
-  }
+    @Provides
+    @Singleton
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+        return Retrofit.Builder()
+            .client(okHttpClient)
+            .baseUrl("https://api.themoviedb.org/3/")
+            .addConverterFactory(MoshiConverterFactory.create())
+            .build()
+    }
 
-  @Provides
-  @Singleton
-  fun provideRetrofitService(retrofit: Retrofit): RetrofitService {
-    return retrofit.create(RetrofitService::class.java)
-  }
+    @Provides
+    @Singleton
+    fun provideRetrofitService(retrofit: Retrofit): RetrofitService {
+        return retrofit.create(RetrofitService::class.java)
+    }
 
-  @Provides
-  @Singleton
-  fun provideRetrofitClient(retrofitService: RetrofitService): RetrofitClient {
-    return RetrofitClient(retrofitService)
-  }
+    @Provides
+    @Singleton
+    fun provideRetrofitClient(retrofitService: RetrofitService): RetrofitClient {
+        return RetrofitClient(retrofitService)
+    }
 }

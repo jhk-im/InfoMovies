@@ -24,35 +24,35 @@ import com.jroomdev.info_movies.databinding.ItemMainListBinding
 
 class MovieListAdapter() : RecyclerView.Adapter<MovieListAdapter.MovieListViewHolder>() {
 
-  private val items: MutableList<String> = mutableListOf()
+    private val items: MutableList<String> = mutableListOf()
 
-  init {
-    items.add("Popularity")
-  }
-
-  override fun onCreateViewHolder(
-    parent: ViewGroup,
-    viewType: Int
-  ): MovieListViewHolder {
-    val inflater = LayoutInflater.from(parent.context)
-    val binding = DataBindingUtil.inflate<ItemMainListBinding>(
-      inflater,
-      R.layout.item_main_list,
-      parent,
-      false
-    )
-    return MovieListViewHolder(binding)
-  }
-
-  override fun onBindViewHolder(holder: MovieListViewHolder, position: Int) {
-    holder.binding.apply {
-      adapter = MovieAdapter()
-      executePendingBindings()
+    init {
+        items.add("Popularity")
     }
-  }
 
-  override fun getItemCount() = items.size
+    override fun onCreateViewHolder(
+      parent: ViewGroup,
+      viewType: Int
+    ): MovieListViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = DataBindingUtil.inflate<ItemMainListBinding>(
+          inflater,
+          R.layout.item_main_list,
+          parent,
+          false
+        )
+        return MovieListViewHolder(binding)
+    }
 
-  class MovieListViewHolder(val binding: ItemMainListBinding) :
-    RecyclerView.ViewHolder(binding.root)
+    override fun onBindViewHolder(holder: MovieListViewHolder, position: Int) {
+        holder.binding.apply {
+            adapter = MovieAdapter()
+            executePendingBindings()
+        }
+    }
+
+    override fun getItemCount() = items.size
+
+    class MovieListViewHolder(val binding: ItemMainListBinding) :
+        RecyclerView.ViewHolder(binding.root)
 }
