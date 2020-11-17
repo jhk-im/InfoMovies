@@ -21,19 +21,30 @@ import com.jroomdev.info_movies.data.model.Movie
 import com.jroomdev.info_movies.screen.adapter.MovieAdapter
 import com.jroomdev.info_movies.screen.main.MainViewModel
 
-@BindingAdapter("adapter")
-fun bindAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
-  view.adapter = adapter
-}
+object RecyclerViewBinding {
 
-@BindingAdapter("paginationMovies")
-fun paginationPokemonList(view: RecyclerView, viewModel: MainViewModel?) {
-  viewModel?.fetchMovieList(1)
-}
+  @JvmStatic
+  @BindingAdapter("adapter")
+  fun bindAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
+    view.adapter = adapter
+  }
 
-@BindingAdapter("movies")
-fun setMovies(view: RecyclerView, movies: List<Movie>?) {
-  movies?.let {
-    (view.adapter as MovieAdapter).addMovieList(movies)
+  @JvmStatic
+  @BindingAdapter("paginationMovies")
+  fun paginationPokemonList(view: RecyclerView, viewModel: MainViewModel) {
+    RecyclerViewPagination(
+      recyclerView = view,
+      isLoading = { viewModel.isLoading.get() },
+      onLoad = { viewModel.fetchMovieList(it) }
+    )
+    // viewModel.fetchMovieList(1)
+  }
+
+  @JvmStatic
+  @BindingAdapter("movies")
+  fun setMovies(view: RecyclerView, movies: List<Movie>?) {
+    movies?.let {
+      (view.adapter as MovieAdapter).addMovieList(movies)
+    }
   }
 }

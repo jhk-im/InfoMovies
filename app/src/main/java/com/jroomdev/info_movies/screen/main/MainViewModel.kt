@@ -16,6 +16,7 @@
 package com.jroomdev.info_movies.screen.main
 
 import androidx.annotation.MainThread
+import androidx.databinding.ObservableBoolean
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
@@ -31,10 +32,17 @@ class MainViewModel @ViewModelInject constructor(
   private var moviesFetchingLiveData: MutableLiveData<Int> = MutableLiveData(0)
   val movies: LiveData<List<Movie>>
 
+  val isLoading: ObservableBoolean = ObservableBoolean(false)
+
   init {
     movies = moviesFetchingLiveData.switchMap {
       launchOnViewModelScope {
-        this.mainRepository.getMovies(1).asLiveData()
+        isLoading.set(true)
+        this.mainRepository.getMovies(
+          page = it,
+          onSuccess = { isLoading.set(false) },
+          onError = {}
+        ).asLiveData()
       }
     }
   }
