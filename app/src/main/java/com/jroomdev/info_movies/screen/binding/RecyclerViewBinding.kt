@@ -37,7 +37,6 @@ object RecyclerViewBinding {
       isLoading = { viewModel.isLoading.get() },
       onLoad = { viewModel.fetchMovieList(it) }
     )
-    // viewModel.fetchMovieList(1)
   }
 
   @JvmStatic

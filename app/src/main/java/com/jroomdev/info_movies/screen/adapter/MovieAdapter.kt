@@ -15,7 +15,6 @@
  */
 package com.jroomdev.info_movies.screen.adapter
 
-
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil

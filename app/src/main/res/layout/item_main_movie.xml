@@ -47,36 +47,40 @@
       android:visibility="@{adapter.clickedItemFilter(movie.id) ? View.GONE : View.VISIBLE}"
       app:cardCornerRadius="14dp">
 
-      <LinearLayout
-        android:id="@+id/movie_linear"
+      <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
         <TextView
           android:id="@+id/movie_rank"
-          android:layout_width="match_parent"
+          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_margin="4dp"
-          android:layout_weight="9"
           android:gravity="center"
           android:padding="4dp"
           android:textColor="?android:attr/textColor"
-          android:textSize="18sp" />
+          android:textSize="18sp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
           android:id="@+id/movie_title"
-          android:layout_width="match_parent"
+          android:layout_width="0dp"
           android:layout_height="wrap_content"
           android:layout_margin="4dp"
-          android:layout_weight="1"
+          android:layout_marginBottom="5dp"
           android:ellipsize="end"
           android:maxLines="1"
           android:padding="4dp"
           android:text="@{movie.title}"
           android:textColor="?android:attr/textColor"
-          android:textSize="18sp" />
-      </LinearLayout>
+          android:textSize="18sp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/movie_rank"
+          app:layout_constraintTop_toTopOf="parent" />
+      </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
