@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
 
   @VisibleForTesting
   val mainViewModel: MainViewModel by viewModels()
+
   private lateinit var binding: ActivityMainBinding
 
   override fun onCreate(savedInstanceState: Bundle?) {

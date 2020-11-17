@@ -15,6 +15,7 @@
  */
 package com.jroomdev.info_movies.screen.adapter
 
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -28,13 +29,17 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
   private val items: MutableList<Movie> = mutableListOf()
   private var _clickedItem: MutableLiveData<Int> = MutableLiveData(0)
+  private var currentClickedItem = -1
+
   fun clickedItemFilter(id: Int): Boolean {
     return _clickedItem.value == id
   }
 
-  fun refreshClickedItem(id: Int) {
+  fun refreshClickedItem(id: Int, position: Int) {
     _clickedItem.value = id
-    notifyDataSetChanged()
+    notifyItemChanged(position)
+    notifyItemChanged(currentClickedItem)
+    currentClickedItem = position
   }
 
   override fun onCreateViewHolder(
@@ -51,23 +56,17 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
       false
     )
 
-    return MovieViewHolder(binding).apply {
-    }
+    return MovieViewHolder(binding)
   }
 
   override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
 
-    val rank = position + 1
-
     holder.binding.apply {
       movie = items[position]
       adapter = this@MovieAdapter
-      movieRank.text = rank.toString()
-      movieDetailRank.text = rank.toString()
       executePendingBindings()
     }
-
-    holder.bindViewHolder()
+    holder.bindViewHolder(position)
   }
 
   override fun getItemCount() = items.size
@@ -80,11 +79,15 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
   class MovieViewHolder(val binding: ItemMainMovieBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bindViewHolder() {
+    fun bindViewHolder(position: Int) {
       with(binding) {
 
+        val rank = position + 1
+        movieRank.text = rank.toString()
+        movieDetailRank.text = rank.toString()
+
         movieRankCard.setOnClickListener {
-          adapter?.refreshClickedItem(movie?.id!!)
+          adapter?.refreshClickedItem(movie?.id!!,position)
         }
         executePendingBindings()
       }

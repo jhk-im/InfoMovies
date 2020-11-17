@@ -87,6 +87,7 @@
       android:background="@drawable/custom_ripple"
       android:clickable="true"
       android:focusable="true"
+      android:animateLayoutChanges="true"
       android:visibility="@{adapter.clickedItemFilter(movie.id) ? View.VISIBLE : View.GONE}"
       app:cardCornerRadius="14dp"
       app:cardUseCompatPadding="true">

@@ -22,8 +22,6 @@ import androidx.lifecycle.*
 import com.jroomdev.info_movies.base.LiveCoroutinesViewModel
 import com.jroomdev.info_movies.data.model.Movie
 import com.jroomdev.info_movies.data.source.repository.MainRepository
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 class MainViewModel @ViewModelInject constructor(
   private val mainRepository: MainRepository,
