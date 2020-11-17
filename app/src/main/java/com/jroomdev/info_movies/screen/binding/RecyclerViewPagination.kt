@@ -15,7 +15,6 @@
  */
 package com.jroomdev.info_movies.screen.binding
 
-import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -45,15 +44,9 @@ class RecyclerViewPagination(
         else -> return
       }
 
-      if (isLoading()){
-        Log.e("network update","$currentPage")
-        return
-      }
+      if (isLoading()) return
 
-      if ((firstVisibleItemPosition + 1) == totalItemCount){
-        onLoad(++currentPage)
-        Log.e("current","$currentPage")
-      }
+      if ((firstVisibleItemPosition + 1) == totalItemCount) onLoad(++currentPage)
     }
   }
 }

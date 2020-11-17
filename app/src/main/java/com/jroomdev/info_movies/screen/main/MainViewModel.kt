@@ -34,6 +34,9 @@ class MainViewModel @ViewModelInject constructor(
 
   val isLoading: ObservableBoolean = ObservableBoolean(false)
 
+  private val _toastLiveData: MutableLiveData<String> = MutableLiveData()
+  val toastLiveData: LiveData<String> get() = _toastLiveData
+
   init {
     movies = moviesFetchingLiveData.switchMap {
       launchOnViewModelScope {
@@ -41,7 +44,7 @@ class MainViewModel @ViewModelInject constructor(
         this.mainRepository.getMovies(
           page = it,
           onSuccess = { isLoading.set(false) },
-          onError = {}
+          onError = { _toastLiveData.postValue(it) }
         ).asLiveData()
       }
     }

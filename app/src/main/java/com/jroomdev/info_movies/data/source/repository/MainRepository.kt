@@ -35,16 +35,28 @@ class MainRepository @Inject constructor(
     onSuccess: () -> Unit,
     onError: (String) -> Unit
   ) = flow {
+
     val movies = movieDao.getMovies(page)
+
     if (movies.isEmpty()) {
+
       val newMovies = ArrayList<Movie>()
-      for (movie in retrofitClient.fetchMovies(page).results) {
-        movie.page = page
-        newMovies.add(movie)
+
+      try {
+
+        retrofitClient.fetchMovies(page).run {
+          for (movie in this.results) {
+            movie.page = this.page
+            newMovies.add(movie)
+          }
+          movieDao.saveMovies(newMovies)
+          emit(newMovies)
+          onSuccess()
+        }
+      } catch (e: Exception) {
+
+        e.message?.let { onError(it) }
       }
-      movieDao.saveMovies(newMovies)
-      emit(newMovies)
-      onSuccess()
     } else {
       emit(movies)
       onSuccess()

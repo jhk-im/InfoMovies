@@ -69,6 +69,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:movies="@{viewModel.movies}"
         app:paginationMovies="@{viewModel}"
+        app:toast="@{viewModel.toastLiveData}"
         tools:listitem="@layout/item_main_movie" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
   </androidx.constraintlayout.widget.ConstraintLayout>
