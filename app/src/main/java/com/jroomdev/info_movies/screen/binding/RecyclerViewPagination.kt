@@ -22,14 +22,15 @@ import androidx.recyclerview.widget.RecyclerView
 class RecyclerViewPagination(
   val recyclerView: RecyclerView,
   private val isLoading: () -> Boolean,
-  private val onLoad: (Int) -> Unit
+  private val isRefreshing: () -> Boolean,
+  private val onLoad: (Int, Boolean) -> Unit
 ) : RecyclerView.OnScrollListener() {
 
   var currentPage = 1
 
   init {
     recyclerView.addOnScrollListener(this)
-    onLoad(currentPage)
+    onLoad(currentPage,isRefreshing())
   }
 
   override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -46,7 +47,14 @@ class RecyclerViewPagination(
 
       if (isLoading()) return
 
-      if ((firstVisibleItemPosition + 1) == totalItemCount) onLoad(++currentPage)
+      if ((firstVisibleItemPosition + 1) == totalItemCount) {
+        if (isRefreshing()){
+          currentPage = 1
+          onLoad(currentPage, isRefreshing())
+        } else {
+          onLoad(++currentPage, isRefreshing())
+        }
+      }
     }
   }
 }

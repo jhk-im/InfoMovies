@@ -15,6 +15,7 @@
  */
 package com.jroomdev.info_movies.screen.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -23,8 +24,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jroomdev.info_movies.R
 import com.jroomdev.info_movies.data.model.Movie
 import com.jroomdev.info_movies.databinding.ItemMainMovieBinding
+import com.jroomdev.info_movies.screen.main.MainViewModel
 
-class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+class MovieAdapter() : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
   private val items: MutableList<Movie> = mutableListOf()
   private var _clickedItem: MutableLiveData<Int> = MutableLiveData(0)
@@ -39,6 +41,12 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
     notifyItemChanged(position)
     notifyItemChanged(currentClickedItem)
     currentClickedItem = position
+  }
+
+  fun addMovieList(movies: List<Movie>, page: Int?) {
+    if (page == 1) items.clear()
+    items.addAll(movies)
+    notifyDataSetChanged()
   }
 
   override fun onCreateViewHolder(
@@ -69,11 +77,6 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
   }
 
   override fun getItemCount() = items.size
-
-  fun addMovieList(movies: List<Movie>) {
-    items.addAll(movies)
-    notifyDataSetChanged()
-  }
 
   class MovieViewHolder(val binding: ItemMainMovieBinding) :
     RecyclerView.ViewHolder(binding.root) {

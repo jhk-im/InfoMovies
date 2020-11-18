@@ -15,6 +15,7 @@
  */
 package com.jroomdev.info_movies.screen.binding
 
+import android.util.Log
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.jroomdev.info_movies.data.model.Movie
@@ -35,7 +36,8 @@ object RecyclerViewBinding {
     RecyclerViewPagination(
       recyclerView = view,
       isLoading = { viewModel.isLoading.get() },
-      onLoad = { viewModel.fetchMovieList(it) }
+      isRefreshing = { viewModel.isRefreshing.get() },
+      onLoad = { i: Int, b: Boolean -> viewModel.fetchMovieList(i,b) }
     )
   }
 
@@ -43,7 +45,7 @@ object RecyclerViewBinding {
   @BindingAdapter("movies")
   fun setMovies(view: RecyclerView, movies: List<Movie>?) {
     movies?.let {
-      (view.adapter as MovieAdapter).addMovieList(movies)
+      (view.adapter as MovieAdapter).addMovieList(movies, movies[0].page)
     }
   }
 }

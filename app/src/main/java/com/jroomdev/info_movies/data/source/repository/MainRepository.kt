@@ -30,31 +30,33 @@ class MainRepository @Inject constructor(
 ) : Repository {
 
   @WorkerThread
+  suspend fun clearMovies() = flow {
+    val clearItems = movieDao.deleteMovies()
+    emit(clearItems)
+  }.flowOn(Dispatchers.IO)
+
+  @WorkerThread
   suspend fun getMovies(
     page: Int,
     onSuccess: () -> Unit,
     onError: (String) -> Unit
   ) = flow {
-
     val movies = movieDao.getMovies(page)
 
     if (movies.isEmpty()) {
-
       val newMovies = ArrayList<Movie>()
 
       try {
-
         retrofitClient.fetchMovies(page).run {
           for (movie in this.results) {
             movie.page = this.page
             newMovies.add(movie)
           }
           movieDao.saveMovies(newMovies)
-          emit(newMovies)
+          emit(movieDao.getMovies(page))
           onSuccess()
         }
       } catch (e: Exception) {
-
         e.message?.let { onError(it) }
       }
     } else {

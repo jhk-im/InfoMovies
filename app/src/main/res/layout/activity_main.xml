@@ -51,10 +51,11 @@
         app:titleTextColor="@color/white" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-      android:id="@+id/coordinator_layout"
+    <com.jroomdev.info_movies.util.ScrollChildSwipeRefreshLayout
       android:layout_width="match_parent"
       android:layout_height="0dp"
+      app:refreshing="@{viewModel.isLoading()}"
+      app:onRefreshListener="@{viewModel::refresh}"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
@@ -71,6 +72,7 @@
         app:paginationMovies="@{viewModel}"
         app:toast="@{viewModel.toastLiveData}"
         tools:listitem="@layout/item_main_movie" />
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </com.jroomdev.info_movies.util.ScrollChildSwipeRefreshLayout>
   </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

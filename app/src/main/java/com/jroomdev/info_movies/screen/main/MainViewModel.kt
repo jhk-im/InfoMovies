@@ -23,6 +23,8 @@ import androidx.lifecycle.*
 import com.jroomdev.info_movies.base.LiveCoroutinesViewModel
 import com.jroomdev.info_movies.data.model.Movie
 import com.jroomdev.info_movies.data.source.repository.MainRepository
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class MainViewModel @ViewModelInject constructor(
   private val mainRepository: MainRepository,
@@ -33,6 +35,7 @@ class MainViewModel @ViewModelInject constructor(
   val movies: LiveData<List<Movie>>
 
   val isLoading: ObservableBoolean = ObservableBoolean(false)
+  val isRefreshing: ObservableBoolean = ObservableBoolean(false)
 
   private val _toastLiveData: MutableLiveData<String> = MutableLiveData()
   val toastLiveData: LiveData<String> get() = _toastLiveData
@@ -43,15 +46,30 @@ class MainViewModel @ViewModelInject constructor(
         isLoading.set(true)
         this.mainRepository.getMovies(
           page = it,
-          onSuccess = { isLoading.set(false) },
+          onSuccess = {
+            isLoading.set(false)
+          },
           onError = { _toastLiveData.postValue(it) }
         ).asLiveData()
       }
     }
   }
 
+  fun refresh() {
+    viewModelScope.launch {
+      mainRepository.clearMovies().collect {
+        isRefreshing.set(true)
+        fetchMovieList(1,false)
+      }
+    }
+  }
+
   @MainThread
-  fun fetchMovieList(page: Int) {
-    moviesFetchingLiveData.value = page
+  fun fetchMovieList(page: Int, refresh: Boolean) {
+    if (refresh){
+      isRefreshing.set(false)
+    } else {
+      moviesFetchingLiveData.value = page
+    }
   }
 }

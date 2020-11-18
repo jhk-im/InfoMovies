@@ -25,7 +25,7 @@ class RetrofitClient @Inject constructor(
   suspend fun fetchMovies(page: Int): MovieResponse {
     val param = mapOf(
       "page" to page.toString(),
-      "api_key" to "e7b63af5659f57f6415baadfc9a3c6c",
+      "api_key" to "e7b63af5659f57f6415baadfc9a3c6c5",
       "sort_by" to "popularity.desc",
       "language" to "en"
     )

@@ -20,6 +20,8 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.jroomdev.info_movies.R
+
 object ViewBinding {
 
   @JvmStatic
@@ -35,6 +37,7 @@ object ViewBinding {
   fun bindLoadImage(view: ImageView, url: String) {
     Glide.with(view.context)
       .load(url)
+      .error(R.drawable.ic_launcher_background)
       .into(view)
   }
 }
