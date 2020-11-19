@@ -15,6 +15,7 @@
  */
 package com.jrooms.info_movies.screen.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -29,21 +30,24 @@ class MovieAdapter() : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
   private val items: MutableList<Movie> = mutableListOf()
   private var _clickedItem: MutableLiveData<Int> = MutableLiveData(0)
-  private var currentClickedItem = 0
+  private var previousClickedItem = 0
 
   fun clickedItemFilter(id: Int): Boolean {
     return _clickedItem.value == id
   }
 
-  fun refreshClickedItem(id: Int, position: Int) {
+  private fun refreshClickedItem(id: Int, position: Int) {
     _clickedItem.value = id
     notifyItemChanged(position)
-    notifyItemChanged(currentClickedItem)
-    currentClickedItem = position
+    notifyItemChanged(previousClickedItem)
+    previousClickedItem = position
   }
 
   fun addMovieList(movies: List<Movie>, page: Int?) {
-    if (page == 1) items.clear()
+    if (page == 1) {
+      items.clear()
+      _clickedItem.value = 0
+    }
     items.addAll(movies)
     notifyDataSetChanged()
   }

@@ -15,7 +15,9 @@
  */
 package com.jrooms.info_movies.data.source.repository
 
+import android.util.Log
 import androidx.annotation.WorkerThread
+import com.jrooms.info_movies.data.model.MovieInfo
 import com.jrooms.info_movies.data.source.local.MovieInfoDao
 import com.jrooms.info_movies.data.source.network.RetrofitClient
 import com.skydoves.sandwich.message
@@ -38,7 +40,7 @@ class DetailRepository @Inject constructor(
     id: Int,
     onSuccess: () -> Unit,
     onError: (String) -> Unit
-  ) = flow {
+  ) = flow<MovieInfo?> {
     val movie = movieInfoDao.getMovieInfo(id)
     if (movie == null){
       val response = retrofitClient.getMovieInfo(id)
@@ -59,6 +61,5 @@ class DetailRepository @Inject constructor(
       emit(movie)
       onSuccess()
     }
-
   }.flowOn(Dispatchers.IO)
 }
