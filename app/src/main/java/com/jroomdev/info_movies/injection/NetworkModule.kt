@@ -18,12 +18,14 @@ package com.jroomdev.info_movies.injection
 import com.jroomdev.info_movies.data.source.network.HttpRequestInterceptor
 import com.jroomdev.info_movies.data.source.network.RetrofitClient
 import com.jroomdev.info_movies.data.source.network.RetrofitService
+import com.skydoves.sandwich.coroutines.CoroutinesResponseCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
@@ -45,7 +47,8 @@ object NetworkModule {
     return Retrofit.Builder()
       .client(okHttpClient)
       .baseUrl("https://api.themoviedb.org/3/")
-      .addConverterFactory(MoshiConverterFactory.create())
+      .addConverterFactory(GsonConverterFactory.create())
+      .addCallAdapterFactory(CoroutinesResponseCallAdapterFactory())
       .build()
   }
 

@@ -56,6 +56,10 @@ ext {
   // network
   retrofitVersion = '2.9.0'
   okhttpVersion = '4.9.0'
+  sandwichVersion = '1.0.6'
+
+  // whatIf
+  whatIfVersion  = '1.0.7'
 
   // coroutines
   coroutinesVersion = '1.4.0'

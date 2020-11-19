@@ -17,9 +17,10 @@ package com.jroomdev.info_movies.data.source.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.jroomdev.info_movies.data.model.Movie
 
-@Database(entities = [Movie::class], version = 1, exportSchema = false)
+@Database(entities = [Movie::class], version = 1, exportSchema = true)
 abstract class AppDatabase : RoomDatabase() {
 
   abstract fun movieDao(): MovieDao

@@ -28,7 +28,7 @@ object ViewBinding {
   @BindingAdapter("toast")
   fun bindToast(view: View, text: String?) {
     text?.let {
-      Toast.makeText(view.context, it, Toast.LENGTH_SHORT).show()
+      Toast.makeText(view.context, it, Toast.LENGTH_LONG).show()
     }
   }
 

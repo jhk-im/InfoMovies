@@ -44,7 +44,6 @@ object LocalModule {
     return Room
       .databaseBuilder(application, AppDatabase::class.java, "Movies.db")
       .fallbackToDestructiveMigration()
-      .allowMainThreadQueries()
       .build()
   }
 
@@ -53,4 +52,5 @@ object LocalModule {
   fun provideMovieDao(appDatabase: AppDatabase): MovieDao {
     return appDatabase.movieDao()
   }
+
 }

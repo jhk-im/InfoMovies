@@ -15,20 +15,18 @@
  */
 package com.jroomdev.info_movies.data.source.network
 
-import com.jroomdev.info_movies.data.model.MovieResponse
 import javax.inject.Inject
 
 class RetrofitClient @Inject constructor(
   private val retrofitService: RetrofitService
 ) {
 
-  suspend fun fetchMovies(page: Int): MovieResponse {
-    val param = mapOf(
-      "page" to page.toString(),
-      "api_key" to "e7b63af5659f57f6415baadfc9a3c6c5",
-      "sort_by" to "popularity.desc",
-      "language" to "en"
+  suspend fun fetchMovies(
+    page: Int
+  ) = retrofitService.getMovies(
+      page = page.toString(),
+      api_key = "e7b63af5659f57f6415baadfc9a3c6c5",
+      sort_by = "popularity.desc",
+      language = "en"
     )
-    return retrofitService.getMovies(param)
-  }
 }

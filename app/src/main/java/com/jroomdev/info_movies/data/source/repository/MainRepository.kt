@@ -15,10 +15,16 @@
  */
 package com.jroomdev.info_movies.data.source.repository
 
+import android.util.Log
 import androidx.annotation.WorkerThread
 import com.jroomdev.info_movies.data.model.Movie
 import com.jroomdev.info_movies.data.source.local.MovieDao
 import com.jroomdev.info_movies.data.source.network.RetrofitClient
+import com.skydoves.sandwich.message
+import com.skydoves.sandwich.onError
+import com.skydoves.sandwich.onException
+import com.skydoves.sandwich.suspendOnSuccess
+import com.skydoves.whatif.whatIfNotNull
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -41,24 +47,25 @@ class MainRepository @Inject constructor(
     onSuccess: () -> Unit,
     onError: (String) -> Unit
   ) = flow {
-    val movies = movieDao.getMovies(page)
+    var movies = movieDao.getMovies(page)
 
     if (movies.isEmpty()) {
-      val newMovies = ArrayList<Movie>()
-
-      try {
-        retrofitClient.fetchMovies(page).run {
-          for (movie in this.results) {
-            movie.page = this.page
-            newMovies.add(movie)
-          }
-          movieDao.saveMovies(newMovies)
+      val response = retrofitClient.fetchMovies(page)
+      response.suspendOnSuccess {
+        data.whatIfNotNull { response ->
+          movies = response.results
+          movies.forEach { movie -> movie.page = page }
+          movieDao.saveMovies(movies)
           emit(movieDao.getMovies(page))
           onSuccess()
         }
-      } catch (e: Exception) {
-        e.message?.let { onError(it) }
       }
+        .onError {
+          onError(message())
+        }
+        .onException {
+          onError(message())
+        }
     } else {
       emit(movies)
       onSuccess()

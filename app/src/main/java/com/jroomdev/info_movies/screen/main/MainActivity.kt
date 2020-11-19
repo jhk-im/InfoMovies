@@ -31,17 +31,17 @@ class MainActivity : AppCompatActivity() {
   @VisibleForTesting
   val mainViewModel: MainViewModel by viewModels()
 
-  private lateinit var binding: ActivityMainBinding
+  val binding: ActivityMainBinding by lazy {
+    DataBindingUtil.setContentView(this, R.layout.activity_main)
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
     binding.apply {
       lifecycleOwner = this@MainActivity
-      viewModel = mainViewModel
       adapter = MovieAdapter()
+      viewModel = mainViewModel
     }
   }
 }

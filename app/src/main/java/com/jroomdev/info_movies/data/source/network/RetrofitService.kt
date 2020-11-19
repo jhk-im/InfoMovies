@@ -16,11 +16,16 @@
 package com.jroomdev.info_movies.data.source.network
 
 import com.jroomdev.info_movies.data.model.MovieResponse
+import com.skydoves.sandwich.ApiResponse
 import retrofit2.http.GET
-import retrofit2.http.QueryMap
+import retrofit2.http.Query
 
 interface RetrofitService {
-
   @GET("discover/movie")
-  suspend fun getMovies(@QueryMap par: Map<String, String>): MovieResponse
+  suspend fun getMovies(
+    @Query("page") page: String,
+    @Query("api_key") api_key: String,
+    @Query("sort_by") sort_by: String,
+    @Query("language") language: String,
+  ): ApiResponse<MovieResponse>
 }
