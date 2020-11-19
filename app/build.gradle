@@ -10,7 +10,7 @@ android {
   compileSdkVersion rootProject.compileSdkVersion
 
   defaultConfig {
-    applicationId "com.jroomdev.info_movies"
+    applicationId "com.jrooms.info_movies"
     minSdkVersion rootProject.minSdkVersion
     targetSdkVersion rootProject.targetSdkVersion
     versionCode 1

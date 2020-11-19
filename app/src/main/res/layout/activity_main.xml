@@ -22,11 +22,11 @@
 
     <variable
       name="adapter"
-      type="com.jroomdev.info_movies.screen.adapter.MovieAdapter" />
+      type="com.jrooms.info_movies.screen.adapter.MovieAdapter" />
 
     <variable
       name="viewModel"
-      type="com.jroomdev.info_movies.screen.main.MainViewModel" />
+      type="com.jrooms.info_movies.screen.main.MainViewModel" />
   </data>
 
   <androidx.constraintlayout.widget.ConstraintLayout
@@ -52,7 +52,7 @@
         app:titleTextColor="@color/white" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.jroomdev.info_movies.util.ScrollChildSwipeRefreshLayout
+    <com.jrooms.info_movies.util.ScrollChildSwipeRefreshLayout
       android:layout_width="match_parent"
       android:layout_height="0dp"
       app:refreshing="@{viewModel.isLoading()}"
@@ -74,6 +74,6 @@
         app:toast="@{viewModel.toastLiveData}"
         tools:listitem="@layout/item_main_movie" />
 
-    </com.jroomdev.info_movies.util.ScrollChildSwipeRefreshLayout>
+    </com.jrooms.info_movies.util.ScrollChildSwipeRefreshLayout>
   </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

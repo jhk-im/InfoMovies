@@ -23,11 +23,11 @@
 
     <variable
       name="adapter"
-      type="com.jroomdev.info_movies.screen.adapter.MovieAdapter" />
+      type="com.jrooms.info_movies.screen.adapter.MovieAdapter" />
 
     <variable
       name="movie"
-      type="com.jroomdev.info_movies.data.model.Movie" />
+      type="com.jrooms.info_movies.data.model.Movie" />
   </data>
 
   <LinearLayout

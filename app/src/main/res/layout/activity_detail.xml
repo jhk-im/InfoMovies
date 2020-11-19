@@ -22,11 +22,11 @@
 
     <variable
       name="movie"
-      type="com.jroomdev.info_movies.data.model.Movie" />
+      type="com.jrooms.info_movies.data.model.Movie" />
 
     <variable
       name="viewModel"
-      type="com.jroomdev.info_movies.screen.detail.DetailViewModel" />
+      type="com.jrooms.info_movies.screen.detail.DetailViewModel" />
   </data>
 
   <androidx.constraintlayout.widget.ConstraintLayout

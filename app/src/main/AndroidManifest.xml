@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
-  package="com.jroomdev.info_movies">
+  package="com.jrooms.info_movies">
 
   <uses-permission android:name="android.permission.INTERNET" />
 
   <application
-    android:name=".InfoMoviesApplication"
+    android:name="com.jrooms.info_movies.InfoMoviesApplication"
     android:allowBackup="true"
     android:icon="@mipmap/ic_launcher"
     android:label="@string/app_name"
@@ -14,8 +14,8 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
     tools:ignore="AllowBackup">
-    <activity android:name=".screen.detail.DetailActivity"></activity>
-    <activity android:name=".screen.main.MainActivity">
+    <activity android:name="com.jrooms.info_movies.screen.detail.DetailActivity"></activity>
+    <activity android:name="com.jrooms.info_movies.screen.main.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
