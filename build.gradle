@@ -58,6 +58,9 @@ ext {
   okhttpVersion = '4.9.0'
   sandwichVersion = '1.0.6'
 
+  //gson
+  gsonVersion = '2.1.0'
+
   // whatIf
   whatIfVersion  = '1.0.7'
 

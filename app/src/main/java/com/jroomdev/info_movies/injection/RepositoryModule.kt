@@ -16,7 +16,9 @@
 package com.jroomdev.info_movies.injection
 
 import com.jroomdev.info_movies.data.source.local.MovieDao
+import com.jroomdev.info_movies.data.source.local.MovieInfoDao
 import com.jroomdev.info_movies.data.source.network.RetrofitClient
+import com.jroomdev.info_movies.data.source.repository.DetailRepository
 import com.jroomdev.info_movies.data.source.repository.MainRepository
 import dagger.Module
 import dagger.Provides
@@ -37,4 +39,12 @@ object RepositoryModule {
     return MainRepository(retrofitClient, movieDao)
   }
 
+  @Provides
+  @ActivityRetainedScoped
+  fun provideDetailRepository(
+    retrofitClient: RetrofitClient,
+    movieInfoDao: MovieInfoDao
+  ): DetailRepository {
+    return DetailRepository(retrofitClient, movieInfoDao)
+  }
 }

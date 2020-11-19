@@ -19,9 +19,12 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.jroomdev.info_movies.data.model.Movie
+import com.jroomdev.info_movies.data.model.MovieInfo
 
-@Database(entities = [Movie::class], version = 1, exportSchema = true)
+@Database(entities = [Movie::class, MovieInfo::class], version = 1, exportSchema = true)
+@TypeConverters(value = [TypeResponseConverter::class])
 abstract class AppDatabase : RoomDatabase() {
 
   abstract fun movieDao(): MovieDao
+  abstract fun movieInfoDao(): MovieInfoDao
 }

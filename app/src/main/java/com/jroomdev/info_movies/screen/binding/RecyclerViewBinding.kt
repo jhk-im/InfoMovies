@@ -15,11 +15,11 @@
  */
 package com.jroomdev.info_movies.screen.binding
 
-import android.util.Log
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.jroomdev.info_movies.data.model.Movie
 import com.jroomdev.info_movies.screen.adapter.MovieAdapter
+import com.jroomdev.info_movies.screen.adapter.RecyclerViewPagination
 import com.jroomdev.info_movies.screen.main.MainViewModel
 
 object RecyclerViewBinding {

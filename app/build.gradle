@@ -20,7 +20,12 @@ android {
 
     javaCompileOptions {
       annotationProcessorOptions {
-        arguments["room.incremental"] = "true"
+        arguments += ["room.schemaLocation" : "$projectDir/schemas".toString()]
+      }
+    }
+    javaCompileOptions {
+      annotationProcessorOptions {
+        arguments["dagger.hilt.disableModulesHaveInstallInCheck"] = "true"
       }
     }
   }
@@ -67,7 +72,7 @@ dependencies {
   implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
   implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
   implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
-  implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
+  implementation "com.squareup.retrofit2:converter-gson:$gsonVersion"
   // whatIf
   implementation "com.github.skydoves:whatif:$whatIfVersion"
 
@@ -83,6 +88,7 @@ dependencies {
   implementation "androidx.hilt:hilt-common:$hiltVersion"
   implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltVersion"
   compileOnly "com.squareup.inject:assisted-inject-annotations-dagger2:$assistedInjectVersion"
+  kapt "com.squareup.inject:assisted-inject-processor-dagger2:$assistedInjectVersion"
   kapt "com.google.dagger:hilt-android-compiler:$hiltCoreVersion"
   kapt "androidx.hilt:hilt-compiler:$hiltVersion"
   androidTestImplementation "com.google.dagger:hilt-android-testing:$hiltCoreVersion"

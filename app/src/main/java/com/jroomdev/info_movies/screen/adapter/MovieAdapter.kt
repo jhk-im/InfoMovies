@@ -15,7 +15,7 @@
  */
 package com.jroomdev.info_movies.screen.adapter
 
-import android.util.Log
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -24,13 +24,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jroomdev.info_movies.R
 import com.jroomdev.info_movies.data.model.Movie
 import com.jroomdev.info_movies.databinding.ItemMainMovieBinding
-import com.jroomdev.info_movies.screen.main.MainViewModel
+import com.jroomdev.info_movies.screen.detail.DetailActivity
+import com.jroomdev.info_movies.screen.detail.DetailActivity.Companion.EXTRA_MOVIE
+import kotlinx.android.synthetic.main.item_main_movie.view.*
 
 class MovieAdapter() : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
   private val items: MutableList<Movie> = mutableListOf()
   private var _clickedItem: MutableLiveData<Int> = MutableLiveData(0)
-  private var currentClickedItem = -1
+  private var currentClickedItem = 0
 
   fun clickedItemFilter(id: Int): Boolean {
     return _clickedItem.value == id
@@ -55,7 +57,6 @@ class MovieAdapter() : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
   ): MovieViewHolder {
 
     val inflater = LayoutInflater.from(parent.context)
-
     val binding = DataBindingUtil.inflate<ItemMainMovieBinding>(
       inflater,
       R.layout.item_main_movie,
@@ -63,36 +64,32 @@ class MovieAdapter() : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
       false
     )
 
-    return MovieViewHolder(binding)
+    return MovieViewHolder(binding).apply {
+
+      binding.movieDetailCard.setOnClickListener {
+        DetailActivity.startActivity(binding.root.context, items[adapterPosition])
+      }
+
+      binding.movieRankCard.setOnClickListener {
+        refreshClickedItem(items[adapterPosition].id, adapterPosition)
+      }
+    }
   }
 
   override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
 
     holder.binding.apply {
+      val rank = position + 1
+      movieRank.text = rank.toString()
+      movieDetailRank.text = rank.toString()
       movie = items[position]
       adapter = this@MovieAdapter
       executePendingBindings()
     }
-    holder.bindViewHolder(position)
   }
 
   override fun getItemCount() = items.size
 
   class MovieViewHolder(val binding: ItemMainMovieBinding) :
-    RecyclerView.ViewHolder(binding.root) {
-
-    fun bindViewHolder(position: Int) {
-      with(binding) {
-
-        val rank = position + 1
-        movieRank.text = rank.toString()
-        movieDetailRank.text = rank.toString()
-
-        movieRankCard.setOnClickListener {
-          adapter?.refreshClickedItem(movie?.id!!,position)
-        }
-        executePendingBindings()
-      }
-    }
-  }
+    RecyclerView.ViewHolder(binding.root)
 }

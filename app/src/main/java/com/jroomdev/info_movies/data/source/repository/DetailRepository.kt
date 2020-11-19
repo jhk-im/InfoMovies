@@ -16,7 +16,7 @@
 package com.jroomdev.info_movies.data.source.repository
 
 import androidx.annotation.WorkerThread
-import com.jroomdev.info_movies.data.source.local.MovieDao
+import com.jroomdev.info_movies.data.source.local.MovieInfoDao
 import com.jroomdev.info_movies.data.source.network.RetrofitClient
 import com.skydoves.sandwich.message
 import com.skydoves.sandwich.onError
@@ -28,34 +28,25 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-class MainRepository @Inject constructor(
+class DetailRepository @Inject constructor(
   private val retrofitClient: RetrofitClient,
-  private val movieDao: MovieDao
+  private val movieInfoDao: MovieInfoDao
 ) : Repository {
 
   @WorkerThread
-  suspend fun clearMovies() = flow {
-    val clearItems = movieDao.deleteMovies()
-    emit(clearItems)
-  }.flowOn(Dispatchers.IO)
-
-  @WorkerThread
-  suspend fun getMovies(
-    page: Int,
+  suspend fun getMovieInfo(
+    id: Int,
     onSuccess: () -> Unit,
     onError: (String) -> Unit
   ) = flow {
-    var movies = movieDao.getMovies(page)
-
-    if (movies.isEmpty()) {
-      val response = retrofitClient.getMovies(page)
+    val movie = movieInfoDao.getMovieInfo(id)
+    if (movie == null){
+      val response = retrofitClient.getMovieInfo(id)
       response.suspendOnSuccess {
         data.whatIfNotNull { response ->
-          movies = response.results
-          movies.forEach { movie -> movie.page = page }
-          movieDao.saveMovies(movies)
-          emit(movieDao.getMovies(page))
-          onSuccess()
+          movieInfoDao.saveMovieInfo(response)
+          emit(response)
+          onSuccess
         }
       }
         .onError {
@@ -65,8 +56,9 @@ class MainRepository @Inject constructor(
           onError(message())
         }
     } else {
-      emit(movies)
+      emit(movie)
       onSuccess()
     }
+
   }.flowOn(Dispatchers.IO)
 }

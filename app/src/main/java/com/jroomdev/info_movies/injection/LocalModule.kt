@@ -19,6 +19,8 @@ import android.app.Application
 import androidx.room.Room
 import com.jroomdev.info_movies.data.source.local.AppDatabase
 import com.jroomdev.info_movies.data.source.local.MovieDao
+import com.jroomdev.info_movies.data.source.local.MovieInfoDao
+import com.jroomdev.info_movies.data.source.local.TypeResponseConverter
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -39,11 +41,13 @@ object LocalModule {
   @Provides
   @Singleton
   fun provideAppDatabase(
-    application: Application
+    application: Application,
+    typeResponseConverter: TypeResponseConverter
   ): AppDatabase {
     return Room
       .databaseBuilder(application, AppDatabase::class.java, "Movies.db")
       .fallbackToDestructiveMigration()
+      .addTypeConverter(typeResponseConverter)
       .build()
   }
 
@@ -52,5 +56,15 @@ object LocalModule {
   fun provideMovieDao(appDatabase: AppDatabase): MovieDao {
     return appDatabase.movieDao()
   }
+  @Provides
+  @Singleton
+  fun provideMovieInfoDao(appDatabase: AppDatabase): MovieInfoDao {
+    return appDatabase.movieInfoDao()
+  }
 
+  @Provides
+  @Singleton
+  fun provideTypeResponseConverter(moshi: Moshi): TypeResponseConverter {
+    return TypeResponseConverter(moshi)
+  }
 }

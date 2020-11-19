@@ -13,28 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jroomdev.info_movies.data.source.network
+package com.jroomdev.info_movies.data.source.local
 
-import javax.inject.Inject
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import com.jroomdev.info_movies.data.model.MovieInfo
 
-class RetrofitClient @Inject constructor(
-  private val retrofitService: RetrofitService
-) {
+@Dao
+interface MovieInfoDao {
 
-  suspend fun getMovies(
-    page: Int
-  ) = retrofitService.getMovies(
-      page = page.toString(),
-      api_key = "e7b63af5659f57f6415baadfc9a3c6c5",
-      sort_by = "popularity.desc",
-      language = "en"
-    )
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
+  suspend fun saveMovieInfo(movieInfo: MovieInfo)
 
-  suspend fun getMovieInfo(
-    id: Int
-  ) = retrofitService.getMovieInfo(
-    id = id.toString(),
-    api_key = "e7b63af5659f57f6415baadfc9a3c6c5",
-    language = "en"
-  )
+  @Query("SELECT * FROM MovieInfo WHERE id = :id")
+  suspend fun getMovieInfo(id: Int): MovieInfo
 }
