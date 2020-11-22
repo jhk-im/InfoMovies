@@ -16,6 +16,7 @@
 package com.jrooms.info_movies.screen.binding
 
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.databinding.BindingAdapter
@@ -39,6 +40,18 @@ object ViewBinding {
       .load(url)
       .error(R.drawable.ic_launcher_background)
       .into(view)
+  }
+
+  @JvmStatic
+  @BindingAdapter("android:layout_height")
+  fun setViewSize(view: ImageView, isTranslateSize: Boolean?) {
+
+    isTranslateSize ?: return
+    view.layoutParams = view.layoutParams.apply {
+      this.height =
+        if (isTranslateSize) view.resources.getDimensionPixelSize(R.dimen.dimen_200dp)
+        else view.measuredHeight
+    }
   }
 }
 

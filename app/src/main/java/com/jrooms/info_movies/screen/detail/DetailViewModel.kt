@@ -16,16 +16,14 @@
 package com.jrooms.info_movies.screen.detail
 
 import androidx.databinding.ObservableBoolean
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.asLiveData
+import androidx.lifecycle.*
 import com.jrooms.info_movies.base.LiveCoroutinesViewModel
 import com.jrooms.info_movies.data.model.MovieInfo
 import com.jrooms.info_movies.data.source.repository.DetailRepository
 import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class DetailViewModel @AssistedInject constructor(
   private val detailRepository: DetailRepository,

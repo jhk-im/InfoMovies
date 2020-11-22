@@ -41,5 +41,5 @@ data class MovieInfo(
     val name: String
   )
 
-  fun getBackdropUrl(): String = "https://image.tmdb.org/t/p/w300${backdrop_path}_path"
+  fun getBackdropUrl(): String = "https://image.tmdb.org/t/p/w400${backdrop_path}_path"
 }
