@@ -35,5 +35,5 @@ data class Movie(
 ) : Parcelable {
 
   fun getVoteAverageString(): String = "$vote_average"
-  fun getImageUrl(): String = "https://image.tmdb.org/t/p/w200$poster_path"
+  fun getImageUrl(): String = "https://image.tmdb.org/t/p/w500$poster_path"
 }

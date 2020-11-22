@@ -24,11 +24,8 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class MovieInfo(
   @field:Json(name = "id") @PrimaryKey val id: Int,
-  @field:Json(name = "title") val title: String,
-  @field:Json(name = "poster_path") val poster_path: String,
-  @field:Json(name = "overview") val overview: String,
   @field:Json(name = "release_date") val release_date: String,
-  @field:Json(name = "vote_average") val vote_average: Float,
+  @field:Json(name = "backdrop_path") val backdrop_path: String,
   @field:Json(name = "popularity") val popularity: Float,
   @field:Json(name = "vote_count") val vote_count: Int,
   @field:Json(name = "runtime") val runtime: Int,
@@ -38,11 +35,11 @@ data class MovieInfo(
   fun getRuntimeString(): String = "$runtime"
   fun getVoteCountString(): String = "$vote_count"
   fun getPopularityString(): String = "$popularity"
-  fun getVoteAverageString(): String = "$vote_average"
-  fun getImageUrl(): String = "https://image.tmdb.org/t/p/w300$poster_path"
 
   data class Genres(
     val id: Int,
     val name: String
   )
+
+  fun getBackdropUrl(): String = "https://image.tmdb.org/t/p/w300${backdrop_path}_path"
 }

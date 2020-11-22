@@ -15,7 +15,6 @@
  */
 package com.jrooms.info_movies.screen.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -68,7 +67,7 @@ class MovieAdapter() : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
     return MovieViewHolder(binding).apply {
 
       binding.movieDetailCard.setOnClickListener {
-        DetailActivity.startActivity(binding.root.context, items[adapterPosition])
+        DetailActivity.startActivity(binding.root.context, items[adapterPosition], it)
       }
 
       binding.movieRankCard.setOnClickListener {

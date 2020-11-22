@@ -31,18 +31,28 @@
 
   <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".screen.detail.DetailActivity">
+    android:layout_height="match_parent">
 
-    <TextView
-      android:id="@+id/testText"
-      android:layout_width="wrap_content"
+    <com.google.android.material.card.MaterialCardView
+      android:id="@+id/movie_detail_card"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:text="@{viewModel.movieInfoLiveData.overview}"
-      app:layout_constraintBottom_toBottomOf="parent"
+      android:layout_margin="4dp"
+      android:transitionName="@string/transition_card"
+      app:cardCornerRadius="14dp"
+      app:cardUseCompatPadding="true"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+      app:layout_constraintTop_toTopOf="parent">
 
+      <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:foreground="@color/image_translate"
+        android:scaleType="centerCrop"
+        app:loadImage="@{movie.imageUrl}"
+        tools:ignore="UnusedAttribute" />
+    </com.google.android.material.card.MaterialCardView>
   </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

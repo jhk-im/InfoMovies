@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "560cd266933f49c5412303bcce920ab4",
+    "identityHash": "90582693c681869b8478137e8d553ca7",
     "entities": [
       {
         "tableName": "Movie",
@@ -56,30 +56,12 @@
       },
       {
         "tableName": "MovieInfo",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `title` TEXT NOT NULL, `poster_path` TEXT NOT NULL, `overview` TEXT NOT NULL, `release_date` TEXT NOT NULL, `vote_average` REAL NOT NULL, `popularity` REAL NOT NULL, `vote_count` INTEGER NOT NULL, `runtime` INTEGER NOT NULL, `genres` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `release_date` TEXT NOT NULL, `backdrop_path` TEXT NOT NULL, `popularity` REAL NOT NULL, `vote_count` INTEGER NOT NULL, `runtime` INTEGER NOT NULL, `genres` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
             "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "title",
-            "columnName": "title",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "poster_path",
-            "columnName": "poster_path",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "overview",
-            "columnName": "overview",
-            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -89,9 +71,9 @@
             "notNull": true
           },
           {
-            "fieldPath": "vote_average",
-            "columnName": "vote_average",
-            "affinity": "REAL",
+            "fieldPath": "backdrop_path",
+            "columnName": "backdrop_path",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -132,7 +114,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '560cd266933f49c5412303bcce920ab4')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '90582693c681869b8478137e8d553ca7')"
     ]
   }
 }

@@ -15,7 +15,6 @@
  */
 package com.jrooms.info_movies.screen.detail
 
-import android.util.Log
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -41,9 +40,7 @@ class DetailViewModel @AssistedInject constructor(
   val isLoading: ObservableBoolean = ObservableBoolean(false)
 
   init {
-    Log.e("detailviewmodel","$id")
     movieInfoLiveData = launchOnViewModelScope {
-      Log.e("detailviewmodel","ro178")
       isLoading.set(true)
       detailRepository.getMovieInfo(
         id = id,

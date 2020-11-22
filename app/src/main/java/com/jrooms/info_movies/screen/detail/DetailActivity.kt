@@ -16,14 +16,18 @@
 package com.jrooms.info_movies.screen.detail
 
 import android.app.Activity
+import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.Pair
+import android.view.View
 import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
 import com.jrooms.info_movies.R
 import com.jrooms.info_movies.data.model.Movie
 import com.jrooms.info_movies.databinding.ActivityDetailBinding
@@ -50,7 +54,6 @@ class DetailActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_detail)
 
     binding.apply {
       lifecycleOwner = this@DetailActivity
@@ -63,11 +66,13 @@ class DetailActivity : AppCompatActivity() {
     @VisibleForTesting
     const val EXTRA_MOVIE = "EXTRA_MOVIE"
 
-    fun startActivity(context: Context, movie: Movie) {
+    fun startActivity(context: Context, movie: Movie, view: View) {
       if (context is Activity) {
         val intent = Intent(context, DetailActivity::class.java)
         intent.putExtra(EXTRA_MOVIE, movie)
-        context.startActivity(intent)
+        val options = ActivityOptions
+          .makeSceneTransitionAnimation(context, view,"transition_card")
+        context.startActivity(intent, options.toBundle())
       }
     }
   }

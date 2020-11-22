@@ -15,4 +15,6 @@
 -->
 <resources>
   <string name="app_name">info-movies</string>
+  <string name="transition_img">transition_img</string>
+  <string name="transition_card">transition_card</string>
 </resources>
