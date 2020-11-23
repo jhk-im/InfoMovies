@@ -29,12 +29,26 @@ data class MovieInfo(
   @field:Json(name = "popularity") val popularity: Float,
   @field:Json(name = "vote_count") val vote_count: Int,
   @field:Json(name = "runtime") val runtime: Int,
+  @field:Json(name = "revenue") val revenue: Int,
   @field:Json(name = "genres") val genres: List<Genres>
   ){
 
+  fun getRevenueString(): String = "$revenue"
   fun getRuntimeString(): String = "$runtime"
-  fun getVoteCountString(): String = "$vote_count"
+  fun getVoteCountString(): String = "($vote_count)"
   fun getPopularityString(): String = "$popularity"
+
+  fun getGenresString(): String {
+    val sb = StringBuilder()
+    genres.forEach { genre ->
+      if(genres.indexOf(genre) != genres.lastIndex)
+      sb.append(genre.name).append(", ")
+      else {
+        sb.append(genre.name)
+      }
+    }
+    return sb.toString()
+  }
 
   data class Genres(
     val id: Int,

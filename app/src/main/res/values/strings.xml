@@ -17,4 +17,11 @@
   <string name="app_name">info-movies</string>
   <string name="transition_img">transition_img</string>
   <string name="transition_card">transition_card</string>
+  <string name="transition_cl">transition_cl</string>
+  <string name="release_date">Release date</string>
+  <string name="popularity">Popularity</string>
+  <string name="runtime">Runtime</string>
+  <string name="revenue">Revenue</string>
+  <string name="overview">Overview</string>
+  <string name="genres">Genres</string>
 </resources>

@@ -24,6 +24,9 @@
   <color name="dark_accent">#A531AA</color>
 
   <color name="image_translate">#80000000</color>
+  <color name="image_translate_dark">#BF000000</color>
+  <color name="star_rate">#FF9800</color>
+  <color name="star_rate_background">#4C4C4C</color>
   <color name="black">#413D4F</color>
   <color name="gray">#9CA4BC</color>
   <color name="white">#F9F9Fa</color>
