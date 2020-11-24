@@ -21,11 +21,13 @@ class RetrofitClient @Inject constructor(
   private val retrofitService: RetrofitService
 ) {
 
+  private val API_KEY: String = "your api key"
+
   suspend fun getMovies(
     page: Int
   ) = retrofitService.getMovies(
       page = page.toString(),
-      api_key = "e7b63af5659f57f6415baadfc9a3c6c5",
+      api_key = API_KEY,
       sort_by = "popularity.desc",
       language = "en"
     )
@@ -34,7 +36,7 @@ class RetrofitClient @Inject constructor(
     id: Int
   ) = retrofitService.getMovieInfo(
     id = id.toString(),
-    api_key = "e7b63af5659f57f6415baadfc9a3c6c5",
+    api_key = API_KEY,
     language = "en"
   )
 }
