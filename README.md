@@ -41,7 +41,7 @@ dagger-hilt를 학습하시는 분들께 작은 도움이라도 되고자 참고
 [Android Dagger-Hilt (6) - ViewModel + Repository(Sandwich)](https://jroomstudio.tistory.com/58?category=437501)
 </br>
 
-<img src="/readme/info_04.gif" align="right" width="25%"/>
+<img src="/readme/info_04.gif" align="right" width="28%"/>
 
 ## 사용기술 및 라이브러리
 - Minimum SDK level 20
