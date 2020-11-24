@@ -12,14 +12,17 @@
 <img src="/readme/info_02.png" width="250" height="500"/>
 <img src="/readme/info_03.png" width="250" height="500"/>
 </p>
+</br>
 
 ## Referenced Project
 <p align="left">
   <a href="https://github.com/skydoves/Pokedex"><img alt="Pokedex" src="/readme/pokedex.png"/></a>
-</p>   
+</p>
+</br>
 
 ## Architecture
 ![architecture](https://developer.android.com/codelabs/android-room-with-a-view-kotlin/img/a7da8f5ea91bac52.png)
+</br>
 </br>
 
 ## Open API 
@@ -28,7 +31,6 @@ local.properties에 api-key를 추가하세요.
 ```
 movie_api_key="add your api key"
 ```
-</br>
 
 ## Blog Post
 해당 프로젝트는 dagger-hilt를 학습하기 위해 작성되었습니다.   
@@ -39,6 +41,7 @@ dagger-hilt를 학습하시는 분들께 작은 도움이라도 되고자 참고
 [Android Dagger-Hilt (4) - MVVM](https://jroomstudio.tistory.com/55?category=437501)    
 [Android Dagger-Hilt (5) - Repositoy](https://jroomstudio.tistory.com/56?category=437501)    
 [Android Dagger-Hilt (6) - ViewModel + Repository(Sandwich)](https://jroomstudio.tistory.com/58?category=437501)
+</br>
 </br>
 
 <img src="/readme/info_04.gif" align="right" width="28%"/>
@@ -62,6 +65,7 @@ dagger-hilt를 학습하시는 분들께 작은 도움이라도 되고자 참고
 - [TransformationLayout](https://github.com/skydoves/transformationlayout)
 - [WhatIf](https://github.com/skydoves/whatif)
 - [Material-Components](https://github.com/material-components/material-components-android)
+</br>
 </br>
 
 ```
