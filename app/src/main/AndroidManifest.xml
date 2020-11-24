@@ -14,25 +14,13 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
     tools:ignore="AllowBackup">
-    <activity android:name="com.jrooms.info_movies.screen.detail.DetailActivity"></activity>
+    <activity android:name="com.jrooms.info_movies.screen.detail.DetailActivity" />
     <activity android:name="com.jrooms.info_movies.screen.main.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
-      <intent-filter>
-        <action android:name="android.intent.action.VIEW" />
-
-        <category android:name="android.intent.category.DEFAULT" />
-        <category android:name="android.intent.category.BROWSABLE" />
-
-        <data
-          android:host="www.info-movies.com"
-          android:pathPattern="/movies"
-          android:scheme="http" />
-      </intent-filter>
     </activity>
   </application>
-
 </manifest>

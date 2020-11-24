@@ -15,28 +15,27 @@
  */
 package com.jrooms.info_movies.data.source.network
 
+import com.jrooms.info_movies.BuildConfig
 import javax.inject.Inject
 
 class RetrofitClient @Inject constructor(
   private val retrofitService: RetrofitService
 ) {
 
-  private val API_KEY: String = "your api key"
-
   suspend fun getMovies(
     page: Int
   ) = retrofitService.getMovies(
-      page = page.toString(),
-      api_key = API_KEY,
-      sort_by = "popularity.desc",
-      language = "en"
-    )
+    page = page.toString(),
+    api_key = BuildConfig.MOVIE_API_KEY,
+    sort_by = "popularity.desc",
+    language = "en"
+  )
 
   suspend fun getMovieInfo(
     id: Int
   ) = retrofitService.getMovieInfo(
     id = id.toString(),
-    api_key = API_KEY,
+    api_key = BuildConfig.MOVIE_API_KEY,
     language = "en"
   )
 }
