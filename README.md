@@ -31,6 +31,7 @@ local.properties에 api-key를 추가하세요.
 ```
 movie_api_key="add your api key"
 ```
+</br>
 
 ## Blog Post
 해당 프로젝트는 dagger-hilt를 학습하기 위해 작성되었습니다.   
@@ -65,6 +66,7 @@ dagger-hilt를 학습하시는 분들께 작은 도움이라도 되고자 참고
 - [TransformationLayout](https://github.com/skydoves/transformationlayout)
 - [WhatIf](https://github.com/skydoves/whatif)
 - [Material-Components](https://github.com/material-components/material-components-android)
+</br>
 </br>
 </br>
 
