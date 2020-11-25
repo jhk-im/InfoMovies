@@ -45,7 +45,7 @@ dagger-hilt를 학습하시는 분들께 작은 도움이라도 되고자 참고
 </br>
 </br>
 
-<img src="/readme/info_04.gif" align="right" width="28%"/>
+<img src="/readme/info_04.gif" align="right" width="30%"/>
 
 ## 사용기술 및 라이브러리
 - Minimum SDK level 20
@@ -62,11 +62,10 @@ dagger-hilt를 학습하시는 분들께 작은 도움이라도 되고자 참고
 - [Retrofit2 & OkHttp3](https://github.com/square/retrofit)
 - [Sandwich](https://github.com/skydoves/Sandwich)
 - [Gson](https://github.com/google/gson)
-- [Glide](https://github.com/bumptech/glide), [GlidePalette](https://github.com/florent37/GlidePalette)
-- [TransformationLayout](https://github.com/skydoves/transformationlayout)
+- [Moshi](https://github.com/square/moshi)
+- [Glide](https://github.com/bumptech/glide)
 - [WhatIf](https://github.com/skydoves/whatif)
 - [Material-Components](https://github.com/material-components/material-components-android)
-</br>
 </br>
 </br>
 
