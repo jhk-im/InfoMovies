@@ -14,12 +14,6 @@
 </p>
 </br>
 
-## Referenced Project
-<p align="left">
-  <a href="https://github.com/skydoves/Pokedex"><img alt="Pokedex" src="/readme/pokedex.png"/></a>
-</p>
-</br>
-
 ## Architecture
 ![architecture](https://developer.android.com/codelabs/android-room-with-a-view-kotlin/img/a7da8f5ea91bac52.png)
 </br>
@@ -68,6 +62,11 @@ dagger-hilt를 학습하시는 분들께 작은 도움이라도 되고자 참고
 - [Material-Components](https://github.com/material-components/material-components-android)
 </br>
 </br>
+
+## Referenced Project
+<p align="left">
+  <a href="https://github.com/skydoves/Pokedex"><img alt="Pokedex" src="/readme/pokedex.png"/></a>
+</p>
 </br>
 
 ```
