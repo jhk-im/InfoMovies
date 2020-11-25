@@ -15,7 +15,7 @@
 </br>
 
 ## Architecture
-![architecture](https://developer.android.com/codelabs/android-room-with-a-view-kotlin/img/a7da8f5ea91bac52.png)
+![architecture](https://developer.android.com/topic/libraries/architecture/images/final-architecture.png)
 </br>
 </br>
 
