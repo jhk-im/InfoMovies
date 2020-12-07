@@ -28,8 +28,6 @@ movie_api_key="add your api key"
 </br>
 
 ## Blog Post
-해당 프로젝트는 dagger-hilt를 학습하기 위해 작성되었습니다.   
-dagger-hilt를 학습하시는 분들께 작은 도움이라도 되고자 참고한 프로젝트를 분석하고 구현하면서 공부했던 주요 내용들을 블로그에 정리해 두었습니다.   
 [Android Dagger-Hilt (1) - Dependency Injection](https://jroomstudio.tistory.com/47?category=437501)    
 [Android Dagger-Hilt (2) - Local Database](https://jroomstudio.tistory.com/48?category=437501)    
 [Android Dagger-Hilt (3) - Network](https://jroomstudio.tistory.com/53?category=437501)    
